@@ -1,0 +1,1 @@
+import tester from '../js/app-functions';

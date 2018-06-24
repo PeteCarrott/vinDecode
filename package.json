@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open --progress",
+    "dev": "webpack-dev-server --open",
     "build": "npx webpack -p --progress",
     "build:dev": "npx webpack -d --progress",
     "watch": "webpack --watch",
