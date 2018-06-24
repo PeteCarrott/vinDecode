@@ -1,21 +1,6 @@
-function decode() {
-  const url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
+import helpers from './helper-functions';
+import '../style/index.scss';
 
-  fetch(url)
-    .then((res) => {
-      if (!res.ok) throw new Error(error);
-      return res.json();
-    })
-    .then((myJSON) => filterData(myJSON))
-    .catch((error) => console.log("Error: ", error));
-}
+const decodeBtn = document.querySelector('.decode-btn');
 
-function filterData(data) {
-  const info = data.Results;
-  const arr = info.filter(function (element, index, array) {
-    return element.Value !== null;
-  }).filter(function (element, index, array) {
-    return element.Value !== "";
-  });
-  console.log(arr);
-}
+decodeBtn.addEventListener('click', helpers.decode);
