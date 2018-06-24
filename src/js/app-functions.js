@@ -11,7 +11,7 @@ exports.fetchData = (url) => {
     .catch((error) => handleError(error));
 }
 
-// Handle error
+// Handle error by return an obj with data
 const handleError = (error) => {
   return {
     hasError: true,
