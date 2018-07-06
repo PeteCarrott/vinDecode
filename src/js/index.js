@@ -2,12 +2,10 @@ import app from './app-functions';
 import '../style/index.scss';
 
 // Set up decode button
-const decodeBtn = document.querySelector('.decode-btn');
+
 // Add click listener
-decodeBtn.addEventListener('click', decode);
 
 // TODO: Set up vin input
-
 
 // TODO: Set up data elements
 

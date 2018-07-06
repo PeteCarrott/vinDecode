@@ -5,11 +5,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Vin Decode</title>
+  <title>Vin Decoder</title>
 </head>
 
 <body>
-  <button class="decode-btn">Decode Vin</button>
+
+  <header>
+    <h1>Vin Decoder</h1>
+    <div>
+      <!--TODO: Add svg -->
+    </div>
+  </header>
+
+  <section>
+    <form>
+      <!--TODO: Add validation  -->
+      <label for="vin">Vin</label>
+      <input type="text" name="vin" minlength="1" maxlength="17" placeholder="1C3CCVVV6DN695936" required>
+      <input type="submit" value="Decode">
+    </form>
+  </section>
+
+  <footer>
+    <button>Click for demo</button>
+  </footer>
+
 </body>
 
 </html>
