@@ -1,20 +1,14 @@
 import app from './app-functions';
 import '../style/index.scss';
 
-// Set up decode button
-
-// Add click listener
-
-// TODO: Set up vin input
-
-// TODO: Set up data elements
+const demoBtn = document.querySelector(".footer--button");
+demoBtn.addEventListener("click", showDemo);
 
 // URL
-// TODO: Make a string template.
 const url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
 
 // Check, fetch, filter, and store data
-function decode() {
+function decode(url) {
   // TODO: Check for correct vin input before trying to decode
 
   // Fetch and filter data
@@ -25,3 +19,8 @@ function decode() {
 }
 
 // TODO: Make function to apply data to page.
+
+function showDemo() {
+  const demoUrl = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
+  decode(demoUrl);
+}
