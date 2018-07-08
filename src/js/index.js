@@ -8,19 +8,24 @@ demoBtn.addEventListener("click", showDemo);
 const url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
 
 // Check, fetch, filter, and store data
-function decode(url) {
-  // TODO: Check for correct vin input before trying to decode
-
+function fetchVinData(url) {
   // Fetch and filter data
   const data = app.fetchData(url).then(res => app.filterData(res));
-
-  // TODO: Call next function to apply data to page.
-  data.then(res => console.log(res));
+  // Store data using local storage
+  data.then(res => storeDataLocally(res));
 }
 
-// TODO: Make function to apply data to page.
+function storeDataLocally(data) {
+  //Check if local storage is available
+  if (!app.storageAvailable('localStorage')) {
+    // TODO : Create function to inform user of this.
+    console.log("This page can't access your local storage. Please try another browser.");
+  }
+
+  console.log(data);
+}
 
 function showDemo() {
   const demoUrl = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
-  decode(demoUrl);
+  fetchVinData(demoUrl);
 }
