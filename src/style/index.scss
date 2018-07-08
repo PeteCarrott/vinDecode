@@ -1,6 +1,18 @@
-@import 'colors';
+@import "colors";
 
 body {
-  background: $bgColor;
-  color: $fontColor;
+  height: 100vh;
+  width: 100vw;
+}
+
+.main {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer {
+  margin-top: 50px;
 }
