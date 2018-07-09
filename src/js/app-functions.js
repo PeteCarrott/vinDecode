@@ -1,22 +1,11 @@
-// Fetch data
-exports.fetchData = (url) => {
-  // Fetch
+exports.getData = (url) => {
   return fetch(url)
     .then((res) => {
       if (!res.ok) throw new Error(error);
       return res.json();
     })
-    // .then((myJSON) => filterData(myJSON))
     .then((myJSON) => myJSON)
-    .catch((error) => handleError(error));
-}
-
-// Handle error by return an obj with data
-const handleError = (error) => {
-  return {
-    hasError: true,
-    errorData: error
-  };
+    .catch((error) => error);
 }
 
 // Filter data
@@ -47,3 +36,7 @@ exports.storageAvailable = (type) => {
       storage.length !== 0;
   }
 };
+
+exports.createURL = (inputValue) => {
+  return `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${inputValue}?format=json`;
+}

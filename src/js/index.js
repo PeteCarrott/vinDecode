@@ -1,31 +1,46 @@
 import app from './app-functions';
 import '../style/index.scss';
 
-const demoBtn = document.querySelector(".footer--button");
-demoBtn.addEventListener("click", showDemo);
+// Decode Button
+document.querySelector(".form--submit").addEventListener("click", (event) => {
+  event.preventDefault();
+  console.log(event);
+});
 
-// URL
-const url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
+// Demo Button
+document.querySelector(".footer--button").addEventListener("click", getAndStoreData);
 
 // Check, fetch, filter, and store data
-function fetchVinData(url) {
-  // Fetch and filter data
-  const data = app.fetchData(url).then(res => app.filterData(res));
-  // Store data using local storage
-  data.then(res => storeDataLocally(res));
+function getAndStoreData() {
+  const input = document.querySelector(".form--input");
+
+  let url = "";
+
+  // Value will be empty if demo button was clicked
+  if (input.value === "") {
+    url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1C3CCBBB6DN695936?format=json";
+  } else {
+    url = app.createURL(input.value);
+  }
+
+  // Fetch, filter and store data
+  app.getData(url)
+    .then(unFilteredData => app.filterData(unFilteredData))
+    .then(filteredData => storeDataLocally(filteredData))
 }
 
 function storeDataLocally(data) {
   //Check if local storage is available
-  if (!app.storageAvailable('localStorage')) {
-    // TODO : Create function to inform user of this.
-    console.log("This page can't access your local storage. Please try another browser.");
+  if (app.storageAvailable('localStorage')) {
+    data.forEach((ele) => {
+      localStorage.setItem(ele.Variable, ele.Value);
+    });
+  } else {
+    const error = "This page can't access your local storage. Please try another browser.";
+    handleError(error);
   }
-
-  console.log(data);
 }
 
-function showDemo() {
-  const demoUrl = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
-  fetchVinData(demoUrl);
+function handleError(error) {
+  console.log(error);
 }
