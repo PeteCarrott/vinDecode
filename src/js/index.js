@@ -1,17 +1,21 @@
 import app from './app-functions';
 import '../style/index.scss';
 
-// Decode Button
-document.querySelector(".form--submit").addEventListener("click", (event) => {
-  event.preventDefault();
-  console.log(event);
-});
+// Set up listener on decode button
+document.querySelector(".form--submit")
+  .addEventListener("click", (e) => {
+    getAndStoreData();
+    e.preventDefault();
+  });
 
-// Demo Button
-document.querySelector(".footer--button").addEventListener("click", getAndStoreData);
+// Set up listener on demo button
+document.querySelector(".footer--button")
+  .addEventListener("click", getAndStoreData);
+
 
 // Check, fetch, filter, and store data
 function getAndStoreData() {
+
   const input = document.querySelector(".form--input");
 
   let url = "";
@@ -26,7 +30,9 @@ function getAndStoreData() {
   // Fetch, filter and store data
   app.getData(url)
     .then(unFilteredData => app.filterData(unFilteredData))
+    .then(filterData => app.checkVin(filterData))
     .then(filteredData => storeDataLocally(filteredData))
+    .catch((vinError) => handleVinError(vinError));
 }
 
 function storeDataLocally(data) {
@@ -42,5 +48,9 @@ function storeDataLocally(data) {
 }
 
 function handleError(error) {
-  console.log(error);
+  alert(error);
+}
+
+function handleVinError(vinError) {
+  console.log(vinError);
 }

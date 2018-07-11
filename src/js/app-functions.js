@@ -13,6 +13,22 @@ exports.filterData = (data) => {
   return data.Results.filter((ele) => ele.Value !== null).filter((ele) => ele.Value !== "");
 };
 
+//Check vin error code
+exports.checkVin = (vinData) => {
+  console.log("checking vin");
+  const errorCode = vinData.filter(ele => ele.Variable == "Error Code");
+
+  console.log(errorCode);
+
+  /*
+  0 - VIN decoded clean.Check Digit(9 th position) is correct
+  1 - VIN decoded clean.Check Digit(9 th position) does not calculate properly.
+  5 - VIN has errors in few positions.
+  11 - Incorrect Model Year, decoded data may not be accurate!
+  */
+  return vinData;
+}
+
 // Check if the app can use browser's local storage
 exports.storageAvailable = (type) => {
   try {
