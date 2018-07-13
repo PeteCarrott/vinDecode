@@ -1,3 +1,7 @@
+exports.createURL = (inputValue) => {
+  return `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${inputValue}?format=json`;
+}
+
 exports.getData = (url) => {
   return fetch(url)
     .then((res) => {
@@ -10,7 +14,11 @@ exports.getData = (url) => {
 
 // Filter data
 exports.filterData = (data) => {
-  return data.Results.filter((ele) => ele.Value !== null).filter((ele) => ele.Value !== "");
+  return new Promise((resolve, reject) => {
+    resolve(data.Results
+      .filter((ele) => ele.Value !== null)
+      .filter((ele) => ele.Value !== ""));
+  });
 };
 
 //Check vin error code
@@ -52,7 +60,3 @@ exports.storageAvailable = (type) => {
       storage.length !== 0;
   }
 };
-
-exports.createURL = (inputValue) => {
-  return `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${inputValue}?format=json`;
-}

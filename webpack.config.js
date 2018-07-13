@@ -6,105 +6,131 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // This plugin removes build folders
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-// A flag to set the webpack mode
-const devMode = process.env.NODE_ENV !== 'production';
 
-module.exports = {
-  // Where to start building out internal dependency graph.
-  entry: './src/js/index.js',
-  // Where to output the bundles and how to name the files.
-  output: {
-    filename: "bundle.[chunkhash].js",
-    path: path.resolve(__dirname, "./dist"),
-  },
-  optimization: {
-    splitChunks: {
-      cacheGroups: {
-        styles: {
-          name: 'styles',
-          test: /\.css$/,
-          chunks: 'all',
-          enforce: true
+module.exports = (env, argv) => {
+  // Check for mode
+  let devMode = true;
+
+  if (argv.mode === 'production') {
+    devMode = false;
+    console.log("************** Building for production **************");
+  } else {
+    console.log("************** Building for development **************");
+  }
+
+  return {
+    // Where to start building out internal dependency graph.
+    entry: {
+      index: './src/js/index.js',
+      results: './src/js/results.js'
+    },
+    // Where to output the bundles and how to name the files.
+    output: {
+      filename: devMode ? '[name].js' : "[name].bundle_[chunkhash].js",
+      path: path.resolve(__dirname, "./dist"),
+    },
+    optimization: {
+      splitChunks: {
+        cacheGroups: {
+          indexStyles: {
+            name: 'index',
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true
+          },
+          resultsStyles: {
+            name: "results",
+            test: /\.css$/,
+            chunks: 'all',
+            enforce: true
+          }
         }
       }
-    }
-  },
-  // Tests for file types with loaders
-  module: {
-    rules: [{
-        // Javascript
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-          options: {
-            presets: ['env']
+    },
+    // Tests for file types with loaders
+    module: {
+      rules: [{
+          // Javascript
+          test: /\.js$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "babel-loader",
+            options: {
+              presets: ['env']
+            }
           }
+        },
+        {
+          // Sass
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader", // translates css into common js
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: "postcss-loader",
+              options: {
+                sourceMap: true
+              }
+            },
+            {
+              loader: "sass-loader", // compiles sass to css
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
+          // HTML
+          test: /\.html$/,
+          use: {
+            loader: "html-loader",
+            options: {
+              minimize: false
+            }
+          }
+        },
+        {
+          // Images
+          test: /\.(jpg|png|svg)$/,
+          use: [{
+            loader: 'file-loader',
+            options: {
+              name: '[name].[ext]',
+              outputPath: 'img/',
+              publicPath: 'img/'
+            }
+          }]
         }
-      },
-      {
-        // Sass
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          {
-            loader: "css-loader", // translates css into common js
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: "postcss-loader",
-            options: {
-              sourceMap: true
-            }
-          },
-          {
-            loader: "sass-loader", // compiles sass to css
-            options: {
-              sourceMap: true
-            }
-          }
-        ]
-      },
-      {
-        // HTML
-        test: /\.html$/,
-        use: {
-          loader: "html-loader",
-          options: {
-            minimize: false
-          }
-        }
-      },
-      {
-        // Images
-        test: /\.(jpg|png|svg)$/,
-        use: [{
-          loader: 'file-loader',
-          options: {
-            name: '[name].[ext]',
-            outputPath: 'img/',
-            publicPath: 'img/'
-          }
-        }]
-      }
-    ]
-  },
-  devtool: 'source-map',
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html'
-    }),
-    new MiniCssExtractPlugin({
-      filename: 'styles.[chunkhash].css',
-      chunkFilename: '[id].css'
-    }),
-    new CleanWebpackPlugin('dist', {})
-  ],
-  devServer: {
-    contentBase: './dist',
-    port: 8000
-  },
-  mode: devMode ? 'development' : 'production'
+      ]
+    },
+    devtool: 'source-map',
+    plugins: [
+      new HtmlWebpackPlugin({
+        chunks: ['index'],
+        filename: 'index.html',
+        template: 'src/index.html'
+      }),
+      new HtmlWebpackPlugin({
+        chunks: ['results'],
+        filename: 'results.html',
+        template: 'src/results.html'
+      }),
+      new MiniCssExtractPlugin({
+        filename: devMode ? '[name].css' : '[name].bundle_[chunkhash].css',
+        chunkFilename: devMode ? '[name].css' : '[name].[hash].css'
+      }),
+      new CleanWebpackPlugin('dist', {})
+    ],
+    devServer: {
+      contentBase: './dist',
+      port: 8000
+    },
+    mode: devMode ? 'development' : 'production'
+  }
 };

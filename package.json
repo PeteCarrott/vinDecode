@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --open",
-    "build": "npx webpack -p --progress",
-    "build:dev": "npx webpack -d --progress",
+    "serve": "webpack-dev-server --open",
+    "prod": "npx webpack -p",
+    "dev": "npx webpack -d",
     "watch": "webpack --watch",
     "test": "jest --watchAll"
   },
