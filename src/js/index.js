@@ -9,32 +9,41 @@ document.querySelector(".form--submit")
   });
 
 // Set up listener on demo button
-document.querySelector(".footer--button")
-  .addEventListener("click", getAndStoreData);
+document.querySelector(".footer--button").addEventListener("click", getAndStoreData);
 
-
-// Check, fetch, filter, and store data
+/**
+ * getAndStoreData() is the starting function for the application.
+ * Arguments : void
+ * Returns : void
+ */
 function getAndStoreData() {
 
-  const input = document.querySelector(".form--input");
+  const vin = document.querySelector(".form--input").value;
 
   let url = "";
 
-  // Value will be empty if demo button was clicked
-  if (input.value === "") {
+  // If user clicked the demo button the input(vin) will be an empty string.
+  if (vin === "") {
+    // This is the demo url.
     url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1C3CCBBB6DN695936?format=json";
   } else {
-    url = app.createURL(input.value);
+    // Create a url from the passed in vin.
+    url = app.createURL(vin);
   }
 
-  // Fetch, filter and store data
+  // Use the url and start the process of gathering the data needed.
   app.getData(url)
     .then(unFilteredData => app.filterData(unFilteredData))
     .then(filterData => app.checkVin(filterData))
     .then(filteredData => storeDataLocally(filteredData))
-    .catch((vinError) => handleVinError(vinError));
+    .catch((error) => handleError(error));
 }
 
+/**
+ * storeDataLocally() stores the data in local storage if available.
+ * Arguments : void
+ * Returns : void
+ */
 function storeDataLocally(data) {
   //Check if local storage is available
   if (app.storageAvailable('localStorage')) {
@@ -47,10 +56,11 @@ function storeDataLocally(data) {
   }
 }
 
+/**
+ * storeDataLocally() handles any errors throw during the application.
+ * Arguments : String
+ * Returns : void
+ */
 function handleError(error) {
-  alert(error);
-}
-
-function handleVinError(vinError) {
-  console.log(vinError);
+  alert("Error : " + error);
 }
