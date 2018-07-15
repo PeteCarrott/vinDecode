@@ -54,6 +54,9 @@ function storeDataLocally(data) {
     const error = "This page can't access your local storage. Please try another browser.";
     handleError(error);
   }
+  console.log("loading results page");
+  // Load results page
+  loadResultsPage();
 }
 
 /**
@@ -63,4 +66,13 @@ function storeDataLocally(data) {
  */
 function handleError(error) {
   alert("Error : " + error);
+}
+
+/**
+ * loadResults() redirects to the results page.
+ * Arguments : Void
+ * Returns : Void
+ */
+function loadResultsPage() {
+  window.location = "./results";
 }
