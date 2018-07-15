@@ -74,5 +74,5 @@ function handleError(error) {
  * Returns : Void
  */
 function loadResultsPage() {
-  window.location = "./results";
+  window.location.href = "./results.html";
 }

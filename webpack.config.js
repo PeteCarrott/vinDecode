@@ -6,6 +6,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // This plugin removes build folders
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+// Webpack allows the use of hot module reloading.
+const webpack = require("webpack");
+// Browser sync
+const BrowserSyncPlugin = require("browser-sync-webpack-plugin");
 
 module.exports = (env, argv) => {
   // Check for mode
@@ -111,6 +115,8 @@ module.exports = (env, argv) => {
     },
     devtool: 'source-map',
     plugins: [
+      //new webpack.HotModuleReplacementPlugin(),
+      //new webpack.NamedModulesPlugin(),
       new HtmlWebpackPlugin({
         chunks: ['index'],
         filename: 'index.html',
@@ -125,11 +131,18 @@ module.exports = (env, argv) => {
         filename: devMode ? '[name].css' : '[name].bundle_[chunkhash].css',
         chunkFilename: devMode ? '[name].css' : '[name].[hash].css'
       }),
-      new CleanWebpackPlugin('dist', {})
+      new CleanWebpackPlugin('dist', {}),
+      new BrowserSyncPlugin({
+        host: "localhost",
+        port: 3000,
+        proxy: "http://localhost:3000/"
+      }, {
+        reload: false
+      })
     ],
     devServer: {
-      contentBase: './dist',
-      port: 8000
+      contentBase: path.resolve(__dirname, 'dist'),
+      port: 3000
     },
     mode: devMode ? 'development' : 'production'
   }
