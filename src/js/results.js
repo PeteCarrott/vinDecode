@@ -14,11 +14,27 @@ function displayData() {
   // Add vin to the element
   vin.innerText = localStorage.getItem("Vin");
 
+  //** Vehicle content
+  // Year, Make, Model
+  // Age
+  //** Powertrain content
+  // Number of Cylinders
+  // Displacement in different units
+  // Drivetrain config
+  // Fuel type
+  //** Body content
+  // Vehicle type - format
+  // Body class
+  // Steering location
+  // Trim
+  //** Build location content
+  // City, State
+  // Country
+  // Map
+  // Plant
+  // Manufacturer Name
+  //** Additional content
+  // Serial Number
 };
-
-
-
-
-
 
 displayData();
