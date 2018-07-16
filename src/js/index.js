@@ -19,53 +19,61 @@ document.querySelector(".footer--button").addEventListener("click", getAndStoreD
 function getAndStoreData() {
 
   const vin = document.querySelector(".form--input").value;
-
+  // This array will store an object containing the vin. 
+  const vinArr = [];
   let url = "";
 
   // If user clicked the demo button the input(vin) will be an empty string.
   if (vin === "") {
+    const sampleVin = "1C3CCBBB6DN695936"
     // This is the demo url.
-    url = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1C3CCBBB6DN695936?format=json";
+    url = `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${sampleVin}?format=json`;
+    // Save vin in array to use with storeDataLocally();
+    vinArr.push({
+      Variable: "Vin",
+      Value: sampleVin
+    });
   } else {
     // Create a url from the passed in vin.
     url = app.createURL(vin);
+    // Save vin in array to use with storeDataLocally();
+    vinArr.push({
+      Variable: "Vin",
+      Value: vin
+    });
   }
 
   // Use the url and start the process of gathering the data needed.
   app.getData(url)
     .then(unFilteredData => app.filterData(unFilteredData))
     .then(filterData => app.checkVin(filterData))
-    .then(filteredData => storeDataLocally(filteredData))
+    .then(filteredData => storeDataLocally(filteredData, vinArr))
+    .then(() => loadResultsPage())
     .catch((error) => handleError(error));
 }
 
 /**
  * storeDataLocally() stores the data in local storage if available.
- * Arguments : void
- * Returns : void
+ * Arguments : Array of objects in the form of [{Variable: "", Value: ""}, ...]
+ * Returns : Promise
  */
-function storeDataLocally(data) {
-  //Check if local storage is available
-  if (app.storageAvailable('localStorage')) {
-    data.forEach((ele) => {
-      localStorage.setItem(ele.Variable, ele.Value);
-    });
-  } else {
-    const error = "This page can't access your local storage. Please try another browser.";
-    handleError(error);
-  }
-  console.log("loading results page");
-  // Load results page
-  loadResultsPage();
-}
-
-/**
- * storeDataLocally() handles any errors throw during the application.
- * Arguments : String
- * Returns : void
- */
-function handleError(error) {
-  alert("Error : " + error);
+function storeDataLocally(data, vinArr) {
+  return new Promise((resolve, reject) => {
+    try {
+      //Check if local storage is available
+      if (app.storageAvailable('localStorage')) {
+        // Store vin
+        localStorage.setItem(vinArr[0].Variable, vinArr[0].Value);
+        // Store vin data
+        data.forEach((ele) => {
+          localStorage.setItem(ele.Variable, ele.Value);
+        });
+      }
+      resolve("done");
+    } catch (error) {
+      reject(error);
+    }
+  })
 }
 
 /**
@@ -75,4 +83,14 @@ function handleError(error) {
  */
 function loadResultsPage() {
   window.location.href = "./results.html";
+}
+
+/**
+ * storeDataLocally() handles any errors throw during the application.
+ * Arguments : String
+ * Returns : void
+ */
+function handleError(error) {
+  // TODO: Info the user.
+  alert("Error : ", error);
 }
