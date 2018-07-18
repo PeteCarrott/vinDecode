@@ -96,7 +96,7 @@ exports.storageAvailable = (type) => {
 
 /**
  * capitalize() makes only the first letter capitalized.
- * Arguments : String
+ * Argument : String
  * Return : String 
  */
 exports.capitalize = str => {

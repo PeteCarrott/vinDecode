@@ -1,7 +1,10 @@
+import {
+  capitalize
+} from "./app-functions";
 import '../style/results.scss';
 
 
-function displayData() {
+function renderData() {
   // Set up dom selectors
   const vin = document.querySelector(".vin__value");
   const vehicleContent = document.querySelector(".vehicle-content");
@@ -11,43 +14,20 @@ function displayData() {
   const buildContentAdditional = document.querySelector(".build-content-additional");
   const additionalContent = document.querySelector(".additional-content");
 
+  //** Vin
   // Add vin to the element
   vin.innerText = localStorage.getItem("Vin");
 
   //** Vehicle content
-  // Year, Make, Model
-  const year = localStorage.getItem("Model Year");
-  const make = localStorage.getItem("Make");
-  const model = localStorage.getItem("Model");
-  const vehicleText = `${year} ${make} ${model}`;
-  const vehicleEle = document.createElement("p");
-  const vehicleTextNode = document.createTextNode(vehicleText);
-  // Add text node to the new element
-  vehicleEle.appendChild(vehicleTextNode);
-  // Add element to DOM selector
-  vehicleContent.appendChild(vehicleEle);
-
-  //**************************** */
-
-  function buildCustomTextElement(keys, customChar) {
-    console.log(keys);
-
-    let text = "";
-
-    keys.forEach((key) => {
-      let word = localStorage.getItem(key);
-      text = text + word + customChar;
-    });
-
-    console.log(text);
-  }
-
-
+  // Keys for local storage
   const vehicleKeys = ["Model Year", "Make", "Model"];
-  buildCustomTextElement(vehicleKeys, " ");
-
+  // Text node for element
+  const vehicleTextNode = createMultiWordText(vehicleKeys, " ");
+  // Build the element for the dom
+  buildElement(vehicleContent, vehicleTextNode, "test-class");
 
   // Age
+
   //** Powertrain content
   // Number of Cylinders
   // Displacement in different units
@@ -66,6 +46,55 @@ function displayData() {
   // Manufacturer Name
   //** Additional content
   // Serial Number
+
+  //**********************************************************************
+
+  /**
+   * createSingleWordText() takes a key for local storage in and builds
+   * a text node from the value.
+   * Arguments : String
+   * Return : TextNode
+   */
+  function createSingleWordText(key) {
+    // Get the value from local storage with the given key.
+    const text = capitalize(localStorage.getItem(key));
+    // Return the node
+    return document.createTextNode(text);
+  }
+
+  /**
+   * createMultiWordText() take in the keys for local storage and builds a * text node from the value. It also allows a custom character
+   * to be placed between each word.
+   * Arguments : String, String
+   * Return : TextNode
+   */
+  function createMultiWordText(keys, customChar) {
+    // Empty string
+    let text = "";
+    // Loop over each key
+    keys.forEach((key) => {
+      // Get the value in local storage
+      let word = localStorage.getItem(key);
+      // Add value to string with custom character to separate
+      text = text + capitalize(word) + customChar;
+    });
+    // Return the node
+    return document.createTextNode(text);
+  }
+
+  /**
+   * buildElement() creates a element and places it in the dom.
+   * Arguments : String, TextNode, String
+   * Return : Void
+   */
+  function buildElement(parentElement, textNode, childClass) {
+    const newElement = document.createElement('p');
+    newElement.classList.add(childClass);
+    newElement.appendChild(textNode);
+    parentElement.appendChild(newElement);
+  }
+
 };
 
-displayData();
+// Call the main function.
+renderData();
