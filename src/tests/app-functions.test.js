@@ -5,3 +5,11 @@ test('Creates URL from input', () => {
   const output = "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/1G1ND52J9Y6186734?format=json";
   expect(app.createURL(input)).toBe(output);
 });
+
+test('Capitalizes only first letter of string', () => {
+  expect(app.capitalize("WORD")).toBe("Word");
+});
+
+test('Capitalizes only first letter of string', () => {
+  expect(app.capitalize("wORD")).toBe("Word");
+});

@@ -93,3 +93,14 @@ exports.storageAvailable = (type) => {
       storage.length !== 0;
   }
 };
+
+/**
+ * capitalize() makes only the first letter capitalized.
+ * Arguments : String
+ * Return : String 
+ */
+exports.capitalize = str => {
+  const firstLetter = str.charAt(0).toUpperCase();
+  const restOfWord = str.slice(1).toLowerCase();
+  return firstLetter + restOfWord;
+};

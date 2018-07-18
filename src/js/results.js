@@ -16,6 +16,37 @@ function displayData() {
 
   //** Vehicle content
   // Year, Make, Model
+  const year = localStorage.getItem("Model Year");
+  const make = localStorage.getItem("Make");
+  const model = localStorage.getItem("Model");
+  const vehicleText = `${year} ${make} ${model}`;
+  const vehicleEle = document.createElement("p");
+  const vehicleTextNode = document.createTextNode(vehicleText);
+  // Add text node to the new element
+  vehicleEle.appendChild(vehicleTextNode);
+  // Add element to DOM selector
+  vehicleContent.appendChild(vehicleEle);
+
+  //**************************** */
+
+  function buildCustomTextElement(keys, customChar) {
+    console.log(keys);
+
+    let text = "";
+
+    keys.forEach((key) => {
+      let word = localStorage.getItem(key);
+      text = text + word + customChar;
+    });
+
+    console.log(text);
+  }
+
+
+  const vehicleKeys = ["Model Year", "Make", "Model"];
+  buildCustomTextElement(vehicleKeys, " ");
+
+
   // Age
   //** Powertrain content
   // Number of Cylinders
