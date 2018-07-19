@@ -1,5 +1,6 @@
 import {
-  capitalize
+  capitalize,
+  determineAge
 } from "./app-functions";
 import '../style/results.scss';
 
@@ -27,6 +28,27 @@ function renderData() {
   buildElement(vehicleContent, vehicleTextNode, "test-class");
 
   // Age
+  //const vehicleAge = determineAge(localStorage.getItem("Model Year"));
+  const vehicleAge = determineAge("2025");
+
+  const vehicleAgeTextNode = (vehicleAge) => {
+    let text = "";
+    console.log(vehicleAge);
+    if (vehicleAge === "0") {
+      text = "Less than a year old";
+    } else if (vehicleAge === "1") {
+      text = "1 year old";
+    } else {
+      text = `${vehicleAge} years old`;
+    }
+    console.log(text);
+    return document.createTextNode(text);
+  };
+
+  vehicleAgeTextNode(vehicleAge);
+
+  // Build the vehicle age element for the dom
+  //buildElement(vehicleContent, vehicleAgeTextNode, 'sub-test-class');
 
   //** Powertrain content
   // Number of Cylinders
