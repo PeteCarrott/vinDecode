@@ -30,46 +30,69 @@ function renderData() {
   //! Vehicle content
 
   //** Year, Make, Model
-
-  // Keys for local storage
+  // Select keys, build text node, build element
   const vehicleKeys = ["Model Year", "Make", "Model"];
-  // Text node for element
   const vehicleTextNode = createMultiWordText(vehicleKeys, " ");
-  // Build the element
   buildElement(vehicleContent, vehicleTextNode, mainDataClass);
 
   //** Age
-  // Get age
+  // Get age, build text node, build element
   const vehicleAge = determineAge(localStorage.getItem("Model Year"));
-  // Build text node
   const vehicleAgeTextNode = createAgeText(vehicleAge);
-  // Build element
   buildElement(vehicleContent, vehicleAgeTextNode, subDataClass);
 
   //! Powertrain content
 
   //** Number of Cylinders
-  // Build text node
+  // Build text node, build element
   const cylindersTextNode = createSingleWordText("Engine Number of Cylinders", " Cylinder(s)");
-  // Build element
   buildElement(powertrainContent, cylindersTextNode, mainDataClass);
 
-  // Displacement in different units
-  // Drivetrain config
-  // Fuel type
-  //** Body content
-  // Vehicle type - format
-  // Body class
-  // Steering location
-  // Trim
-  //** Build location content
-  // City, State
-  // Country
-  // Map
-  // Plant
-  // Manufacturer Name
-  //** Additional content
-  // Serial Number
+  //** Displacement in different units
+  // Select keys, build text, build text node, build element
+  const displacmentKeys = ["Displacement (L)", "Displacement (CC)", "Displacement (CI)"];
+
+  // TODO: Need to break this up in case localStorage key doesn't exist.
+  function buildDisplacmentText(displacmentKeys) {
+    let liters = parseFloat(localStorage.getItem(displacmentKeys[0]), 10).toFixed(1);
+    let cc = parseFloat(localStorage.getItem(displacmentKeys[1]), 10).toFixed(0);
+    let ci = parseFloat(localStorage.getItem(displacmentKeys[2]), 10).toFixed(0);
+    return `${liters} L / ${cc} CC / ${ci} CI`;
+  }
+
+  const displacementText = buildDisplacmentText(displacmentKeys);
+  const displacementTextNode = document.createTextNode(displacementText);
+  buildElement(powertrainContent, displacementTextNode, mainDataClass);
+
+  //! Drivetrain config
+
+  //** Fuel type
+
+  //! Body content
+
+  //** Vehicle type - format
+
+  //** Body class
+
+  //** Steering location
+
+  //** Trim
+
+  //! Build location content
+
+  //** City, State
+
+  //** Country
+
+  //** Map
+
+  //** Plant
+
+  //** Manufacturer Name
+
+  //! Additional content
+
+  //** Serial Number
 
   //**********************************************************************
 

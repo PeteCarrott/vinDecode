@@ -120,3 +120,5 @@ exports.determineAge = year => {
   }
   return age.toString();
 };
+
+// TODO: need to check functions for undefined or null conditions.
