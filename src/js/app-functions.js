@@ -100,6 +100,7 @@ exports.storageAvailable = (type) => {
  * Return : String 
  */
 exports.capitalize = str => {
+  if (str === null) return str;
   const firstLetter = str.charAt(0).toUpperCase();
   const restOfWord = str.slice(1).toLowerCase();
   return firstLetter + restOfWord;

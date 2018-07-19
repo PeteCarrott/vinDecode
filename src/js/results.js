@@ -15,17 +15,28 @@ function renderData() {
   const buildContentAdditional = document.querySelector(".build-content-additional");
   const additionalContent = document.querySelector(".additional-content");
 
+  // Classes for elements
+  const mainDataClass = "main-data-class";
+  const subDataClass = "sub-data-class";
+
+  //***************************************************************************
+  //** Start Building */
+  //***************************************************************************
+
   //** Vin
   // Add vin to the element
   vin.innerText = localStorage.getItem("Vin");
 
-  //** Vehicle content
+  //! Vehicle content
+
+  //** Year, Make, Model
+
   // Keys for local storage
   const vehicleKeys = ["Model Year", "Make", "Model"];
   // Text node for element
   const vehicleTextNode = createMultiWordText(vehicleKeys, " ");
-  // Build the element for the dom
-  buildElement(vehicleContent, vehicleTextNode, "test-class");
+  // Build the element
+  buildElement(vehicleContent, vehicleTextNode, mainDataClass);
 
   //** Age
   // Get age
@@ -33,10 +44,16 @@ function renderData() {
   // Build text node
   const vehicleAgeTextNode = createAgeText(vehicleAge);
   // Build element
-  buildElement(vehicleContent, vehicleAgeTextNode, 'sub-test-class');
+  buildElement(vehicleContent, vehicleAgeTextNode, subDataClass);
 
-  //** Powertrain content
-  // Number of Cylinders
+  //! Powertrain content
+
+  //** Number of Cylinders
+  // Build text node
+  const cylindersTextNode = createSingleWordText("Engine Number of Cylinders", " Cylinder(s)");
+  // Build element
+  buildElement(powertrainContent, cylindersTextNode, mainDataClass);
+
   // Displacement in different units
   // Drivetrain config
   // Fuel type
@@ -58,15 +75,23 @@ function renderData() {
 
   /**
    * createSingleWordText() takes a key for local storage in and builds
-   * a text node from the value.
-   * Arguments : String
+   * a text node from the value, a symbol or word can be added to the end as-well.
+   * Arguments : String, String
    * Return : TextNode
    */
-  function createSingleWordText(key) {
+  function createSingleWordText(key, symbol) {
     // Get the value from local storage with the given key.
-    const text = capitalize(localStorage.getItem(key));
-    // Return the node
-    return document.createTextNode(text);
+    let text = capitalize(localStorage.getItem(key));
+    // Check if something needs to be added to string.
+    if (symbol === undefined) {
+      // Return the node
+      return document.createTextNode(text);
+    } else {
+      // Add to string
+      text = text + symbol;
+      // Return node
+      return document.createTextNode(text);
+    }
   }
 
   /**
