@@ -21,3 +21,7 @@ test('Get age based on model year', () => {
 test('Get age based on model year', () => {
   expect(app.determineAge("2018")).toBe("0");
 });
+
+test("Get age based on model year", () => {
+  expect(app.determineAge("2020")).toBe("0");
+});
