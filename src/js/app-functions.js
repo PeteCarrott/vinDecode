@@ -104,3 +104,14 @@ exports.capitalize = str => {
   const restOfWord = str.slice(1).toLowerCase();
   return firstLetter + restOfWord;
 };
+
+/**
+ * determineAge() returns the age based on the model year.
+ * Argument : String
+ * Return : String
+ */
+exports.determineAge = year => {
+  const today = new Date().getFullYear();
+  const age = today - year;
+  return age.toString();
+};
