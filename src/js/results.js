@@ -27,28 +27,13 @@ function renderData() {
   // Build the element for the dom
   buildElement(vehicleContent, vehicleTextNode, "test-class");
 
-  // Age
-  //const vehicleAge = determineAge(localStorage.getItem("Model Year"));
-  const vehicleAge = determineAge("2025");
-
-  const vehicleAgeTextNode = (vehicleAge) => {
-    let text = "";
-    console.log(vehicleAge);
-    if (vehicleAge === "0") {
-      text = "Less than a year old";
-    } else if (vehicleAge === "1") {
-      text = "1 year old";
-    } else {
-      text = `${vehicleAge} years old`;
-    }
-    console.log(text);
-    return document.createTextNode(text);
-  };
-
-  vehicleAgeTextNode(vehicleAge);
-
-  // Build the vehicle age element for the dom
-  //buildElement(vehicleContent, vehicleAgeTextNode, 'sub-test-class');
+  //** Age
+  // Get age
+  const vehicleAge = determineAge(localStorage.getItem("Model Year"));
+  // Build text node
+  const vehicleAgeTextNode = createAgeText(vehicleAge);
+  // Build element
+  buildElement(vehicleContent, vehicleAgeTextNode, 'sub-test-class');
 
   //** Powertrain content
   // Number of Cylinders
@@ -101,6 +86,23 @@ function renderData() {
       text = text + capitalize(word) + customChar;
     });
     // Return the node
+    return document.createTextNode(text);
+  }
+
+  /**
+   * createAgeText() builds a text node for an element.
+   * Arguments : String
+   * Return : TextNode
+   */
+  function createAgeText(age) {
+    let text = "";
+    if (age === "0") {
+      text = "Less than a year old";
+    } else if (age === "1") {
+      text = "1 year old";
+    } else {
+      text = `${age} years old`;
+    }
     return document.createTextNode(text);
   }
 

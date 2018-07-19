@@ -113,7 +113,7 @@ exports.capitalize = str => {
 exports.determineAge = year => {
   const today = new Date().getFullYear();
   let age = today - year;
-  // Just in case the vehicle is the next year model.
+  // Just in case the vehicle is the next year model. ie(a 2020 model in 2019)
   if (age < 0) {
     age = 0;
   }
