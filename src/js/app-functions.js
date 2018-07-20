@@ -121,4 +121,16 @@ exports.determineAge = year => {
   return age.toString();
 };
 
+/**
+ * getSerialNumber() return the serial number from the vin.
+ * Argument : String (must be 17 characters)
+ * Return : String or undefined 
+ */
+exports.getSerialNumber = vin => {
+  if (vin.length === 17) {
+    return vin.slice(11);
+  }
+  return undefined;
+};
+
 // TODO: need to check functions for undefined or null conditions.

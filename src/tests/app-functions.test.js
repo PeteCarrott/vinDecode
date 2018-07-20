@@ -25,3 +25,11 @@ test('Get age based on model year', () => {
 test("Get age based on model year", () => {
   expect(app.determineAge("2020")).toBe("0");
 });
+
+test("Return serial number from vin", () => {
+  expect(app.getSerialNumber("1C3CCBBB6DN695936")).toBe("695936");
+});
+
+test("Return serial number from vin", () => {
+  expect(app.getSerialNumber("BBB6DN695936")).toBe(undefined);
+});
