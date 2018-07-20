@@ -1,6 +1,7 @@
 import {
   capitalize,
-  determineAge
+  determineAge,
+  getSerialNumber
 } from "./app-functions";
 import '../style/results.scss';
 
@@ -107,7 +108,7 @@ function renderData() {
   //** Plant
 
   const plantName = localStorage.getItem("Plant Company Name");
-  const plantTextNode = document.createTextNode(`Plant Name : ${plantName}`);
+  const plantTextNode = document.createTextNode(`Plant Company Name : ${plantName}`);
   buildElement(buildContentAdditional, plantTextNode, mainDataClass);
 
   //** Manufacturer Name
@@ -119,7 +120,9 @@ function renderData() {
   //! Additional content
 
   //** Serial Number
-
+  const serialNumber = getSerialNumber(localStorage.getItem("Vin"));
+  const serialTextNode = document.createTextNode(`Serial Number : ${serialNumber}`);
+  buildElement(additionalContent, serialTextNode, mainDataClass);
 
   //**********************************************************************
 
