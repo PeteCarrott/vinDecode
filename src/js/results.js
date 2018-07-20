@@ -64,19 +64,37 @@ function renderData() {
   const displacementTextNode = document.createTextNode(displacementText);
   buildElement(powertrainContent, displacementTextNode, mainDataClass);
 
-  //! Drivetrain config
+  //** Drivetrain config
+
+  const driveTrainTextNode = createSingleWordText("Drive Type");
+  buildElement(powertrainContent, driveTrainTextNode, mainDataClass);
 
   //** Fuel type
+
+  const fuelTextNode = createSingleWordText("Fuel Type - Primary");
+  buildElement(powertrainContent, fuelTextNode, subDataClass);
 
   //! Body content
 
   //** Vehicle type - format
 
+  const vehicleTypeTextNode = createSingleWordText("Vehicle Type");
+  buildElement(bodyContent, vehicleTypeTextNode, mainDataClass);
+
   //** Body class
+
+  const bodyClassTextNode = createSingleWordText("Body Class");
+  buildElement(bodyContent, bodyClassTextNode, mainDataClass);
 
   //** Steering location
 
+  const steeringTextNode = createSingleWordText("Steering Location");
+  buildElement(bodyContent, steeringTextNode, mainDataClass);
+
   //** Trim
+
+  const trimTextNode = createSingleWordText("Trim");
+  buildElement(bodyContent, trimTextNode, subDataClass);
 
   //! Build location content
 
@@ -88,11 +106,20 @@ function renderData() {
 
   //** Plant
 
+  const plantName = localStorage.getItem("Plant Company Name");
+  const plantTextNode = document.createTextNode(`Plant Name : ${plantName}`);
+  buildElement(buildContentAdditional, plantTextNode, mainDataClass);
+
   //** Manufacturer Name
+
+  const manufacturer = localStorage.getItem("Manufacturer Name");
+  const manufacturerTextNode = document.createTextNode(`Manufacturer Name : ${manufacturer}`);
+  buildElement(buildContentAdditional, manufacturerTextNode, mainDataClass);
 
   //! Additional content
 
   //** Serial Number
+
 
   //**********************************************************************
 
