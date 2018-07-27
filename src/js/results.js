@@ -41,25 +41,41 @@ function renderData() {
 
   //! Powertrain content
 
-  //** Number of Cylinders
-  // Build text node, build element
-  const cylindersTextNode = createSingleWordText('Engine Number of Cylinders', ' Cylinder(s)');
-  //mountElement(powertrainContent, cylindersTextNode, mainDataClass);
+  //** Engine Number of Cylinders
+  const cylinders = localStorage.getItem('Engine Number of Cylinders');
+  //TODO: Add formatter argument to the buildText call.
+  const cylindersTextNode = document.createTextNode(buildText(cylinders));
+  mountElement(powertrainContent, cylindersTextNode, mainDataClass);
 
-  //** Displacement in different units
-  // Select keys, build text, build text node, build element
-  const displacmentKeys = ['Displacement (L)', 'Displacement (CC)', 'Displacement (CI)'];
+  //Displacement(L)
+  const displacementL = localStorage.getItem('Displacement (L)');
+  const displacementTextNode = document.createTextNode(`Displacement : ${displacementL} L`);
+  mountElement(powertrainContent, displacementTextNode, mainDataClass);
 
-  // TODO: Need to break this up in case localStorage key doesn't exist.
-  function buildDisplacmentText(displacmentKeys) {
-    let liters = parseFloat(localStorage.getItem(displacmentKeys[0]), 10).toFixed(1);
-    let cc = parseFloat(localStorage.getItem(displacmentKeys[1]), 10).toFixed(0);
-    let ci = parseFloat(localStorage.getItem(displacmentKeys[2]), 10).toFixed(0);
-    return `${liters} L / ${cc} CC / ${ci} CI`;
-  }
+  //Engine Stroke Cycles
 
-  const displacementText = buildDisplacmentText(displacmentKeys);
-  const displacementTextNode = document.createTextNode(displacementText);
+  //Engine Model
+
+  //Fuel Type - Primary
+
+  //Fuel Delivery / Fuel Injection Type
+
+  //Engine Configuration
+
+  //Cooling Type
+
+  // Turbo
+
+  // Transmission Style
+
+  // Transmission Speeds
+
+  // Drive Type
+
+  // // TODO: Need to break this up in case localStorage key doesn't exist.
+
+  // const displacementText = buildDisplacmentText(displacmentKeys);
+  // const displacementTextNode = document.createTextNode(displacementText);
   //mountElement(powertrainContent, displacementTextNode, mainDataClass);
 
   //** Drivetrain config
