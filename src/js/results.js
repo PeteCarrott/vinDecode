@@ -251,23 +251,6 @@ function renderData() {
   }
 
   /**
-   * * createAgeText() builds a text node for an element.
-   * @param string
-   * Returns string
-   */
-  function createAgeText(age) {
-    let text = '';
-    if (age === '0') {
-      text = 'Less than a year old';
-    } else if (age === '1') {
-      text = '1 year old';
-    } else {
-      text = `${age} years old`;
-    }
-    return text;
-  }
-
-  /**
    * * getData() returns an object fill with the key value pairs from local storage.
    * This function also formats the values to only have the first char capitalized.
    * @param array of string keys you want from local storage.
