@@ -26,6 +26,12 @@ function renderData() {
   const make_formatted = capitalize(localStorage.getItem('Make'));
   localStorage.setItem('Make', make_formatted);
 
+  // Format numbers for displacement
+  const cc_formatted = parseFloat(localStorage.getItem('Displacement (CC)'), 10);
+  localStorage.setItem('Displacement (CC)', cc_formatted);
+  const ci_formatted = parseFloat(localStorage.getItem('Displacement (CI)'), 10).toFixed(0);
+  localStorage.setItem('Displacement (CI)', ci_formatted);
+
   //***************************************************************************
   //** Structure Data */
   //***************************************************************************
@@ -128,20 +134,19 @@ function renderData() {
   //** Fuel Type
   // Get fuel type
   const fuelType = localStorage.getItem('Fuel Type - Primary');
-  // Build text node
-  const fuelTextNode = document.createTextNode(`Fuel Type : ${fuelType}`);
-  // Mount to DOM
-  mountElement(powertrainContent, fuelTextNode, subDataClass);
+
+  if (fuelType !== null) {
+    // Build text node
+    const fuelTextNode = document.createTextNode(`Fuel Type : ${fuelType}`);
+    // Mount to DOM
+    mountElement(powertrainContent, fuelTextNode, subDataClass);
+  }
 
   //** Drivetrain config
 
   transDataArr.then(arr => {
     processData(arr, powertrainContent, mainDataClass);
   });
-
-  //** Fuel type
-
-  //mountElement(powertrainContent, fuelTextNode, subDataClass);
 
   //! Body content
 
