@@ -95,7 +95,7 @@ function renderData() {
 
   //! Vehicle content
 
-  //** Year, Make, Model
+  //** Year, Make, Model, Age
 
   // Build a text str from the array
   vehicleDataArr.then(arr => {
@@ -109,13 +109,14 @@ function renderData() {
     const vehTextNode = document.createTextNode(vehStr);
     // Place info in the DOM
     mountElement(vehicleContent, vehTextNode, mainDataClass);
+
+    // Use model year to determine age
+    const vehicleAge = determineAge(arr[0].value);
+    // Create text node for age
+    const vehAgeTextNode = document.createTextNode(vehicleAge);
+    /// Place age in DOM
+    mountElement(vehicleContent, vehAgeTextNode, subDataClass);
   });
-
-  //** Age
-
-  const vehicleAge = '';
-
-  // mountElement(vehicleContent, ageTextNode, subDataClass);
 
   //! Powertrain content
 
