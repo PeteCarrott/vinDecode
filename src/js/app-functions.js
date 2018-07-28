@@ -121,9 +121,17 @@ exports.determineAge = year => {
     age = 0;
   }
 
-  let ageStr = age.toString();
+  let text = '';
 
-  return age;
+  if (age === 0) {
+    text = 'Less than a year old';
+  } else if (age === 1) {
+    text = '1 year old';
+  } else {
+    text = `${age} years old`;
+  }
+
+  return text;
 };
 
 /**
