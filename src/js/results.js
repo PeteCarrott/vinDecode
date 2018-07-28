@@ -16,98 +16,141 @@ function renderData() {
   const subDataClass = 'sub-data-class';
 
   //***************************************************************************
+  //** Format Data */
+  //***************************************************************************
+
+  // Fix uppercase values from api.
+  const vehicleType_formatted = capitalize(localStorage.getItem('Vehicle Type'));
+  localStorage.setItem('Vehicle Type', vehicleType_formatted);
+
+  const make_formatted = capitalize(localStorage.getItem('Make'));
+  localStorage.setItem('Make', make_formatted);
+
+  //***************************************************************************
+  //** Structure Data */
+  //***************************************************************************
+
+  const vinData = localStorage.getItem('Vin');
+
+  // Keys for local storage
+  const vehicleKeys = ['Model Year', 'Make', 'Model'];
+  const buildKeys = ['Plant City', 'Plant State', 'Plant Country', 'Manufacturer Name'];
+  const bodyKeys = ['Vehicle Type', 'Body Class', 'Note', 'Series', 'Trim', 'Trim2', 'Doors', 'Steering Location'];
+  const engineKeys = [
+    'Engine Model',
+    'Engine Config',
+    'Engine Number of Cylinders',
+    'Engine Stroke Cycles',
+    'Fuel Delivery / Fuel Injection Type',
+    'Displacement (L)',
+    'Displacement (CC)',
+    'Displacement (CI)',
+    'Engine Brake (hp)',
+    'Value Train Design',
+    'Cooling Type',
+    'Fuel Type - Primary'
+  ];
+  const transKeys = ['Transmission Style', 'Transmission Speeds', 'Drive Type'];
+  const hybridKeys = ['Battery Type', 'Battery Info', 'EV Drive Model'];
+  const safetyKeys = [
+    'Seat Belts Type',
+    'Other Restraint System Info',
+    'Front Air Bag Locations',
+    'Knee Air Bag Locations',
+    'Side Air Bag Locations',
+    'Driver Assist',
+    'Adaptive Cruise Control (ACC)',
+    'Anti-lock Braking System (ABS)',
+    'Crash Imminent Braking (CIB)',
+    'Blind Spot Detection (BSD)',
+    'Electronic Stability Control (ESC)',
+    'Traction Control',
+    'Forward Collision Warning (FCW)',
+    'Lane Departure Warning (LDW)',
+    'Lane Keeping Support (LKS)',
+    'Rear Visibility System (RSV)',
+    'TPMS',
+    'Dynamic Brake Support (DBS)',
+    'Pedestrian Automatic Emergency Braking (PAEB)',
+    'Daytime Running Lights (DRL)',
+    'Keyless Ignition'
+  ];
+
+  // Data Arrays
+  const vehicleDataArr = sectionData(vehicleKeys);
+  const buildDataArr = sectionData(buildKeys);
+  const bodyDataArr = sectionData(bodyKeys);
+  const engineDataArr = sectionData(engineKeys);
+  const transDataArr = sectionData(transKeys);
+  const hybridDataArr = sectionData(hybridKeys);
+  const safetyDataArr = sectionData(safetyKeys);
+
+  //***************************************************************************
   //** Start Building */
   //***************************************************************************
 
   //** Vin
   // Add vin to the element
-  vin.innerText = localStorage.getItem('Vin');
+  vin.innerText = vinData;
 
   //! Vehicle content
 
   //** Year, Make, Model
-  // Select keys, get data, build text node, mount to DOM.
-  const vehicleKeys = ['Model Year', 'Make', 'Model'];
-  const vehicleData = getData(vehicleKeys);
-  const vehicleTextNode = document.createTextNode(buildText(vehicleData, joinWithSpaces));
-  mountElement(vehicleContent, vehicleTextNode, mainDataClass);
+
+  // Build a text str from the array
+  vehicleDataArr.then(arr => {
+    let vehStr = '';
+    // Concat the string with spaces
+    arr.forEach(ele => {
+      vehStr += ele.value + ' ';
+    });
+
+    // Use the new string for the text node
+    const vehTextNode = document.createTextNode(vehStr);
+    // Place info in the DOM
+    mountElement(vehicleContent, vehTextNode, mainDataClass);
+  });
 
   //** Age
-  // Get year from vehicle data, determine age, build text node, mount to DOM.
-  const year = Object.values(vehicleData)[0];
-  const age = createAgeText(determineAge(year));
-  const ageTextNode = document.createTextNode(buildText(age));
-  mountElement(vehicleContent, ageTextNode, subDataClass);
+
+  const vehicleAge = '';
+
+  // mountElement(vehicleContent, ageTextNode, subDataClass);
 
   //! Powertrain content
 
   //** Engine Number of Cylinders
-  const cylinders = localStorage.getItem('Engine Number of Cylinders');
-  //TODO: Add formatter argument to the buildText call.
-  const cylindersTextNode = document.createTextNode(buildText(cylinders));
-  mountElement(powertrainContent, cylindersTextNode, mainDataClass);
 
-  //Displacement(L)
-  const displacementL = localStorage.getItem('Displacement (L)');
-  const displacementTextNode = document.createTextNode(`Displacement : ${displacementL} L`);
-  mountElement(powertrainContent, displacementTextNode, mainDataClass);
+  //mountElement(powertrainContent, cylindersTextNode, mainDataClass);
 
-  //Engine Stroke Cycles
+  //mountElement(powertrainContent, displacementTextNode, mainDataClass);
 
-  //Engine Model
-
-  //Fuel Type - Primary
-
-  //Fuel Delivery / Fuel Injection Type
-
-  //Engine Configuration
-
-  //Cooling Type
-
-  // Turbo
-
-  // Transmission Style
-
-  // Transmission Speeds
-
-  // Drive Type
-
-  // // TODO: Need to break this up in case localStorage key doesn't exist.
-
-  // const displacementText = buildDisplacmentText(displacmentKeys);
-  // const displacementTextNode = document.createTextNode(displacementText);
   //mountElement(powertrainContent, displacementTextNode, mainDataClass);
 
   //** Drivetrain config
 
-  const driveTrainTextNode = createSingleWordText('Drive Type');
-  //mountElement(powertrainContent, driveTrainTextNode, mainDataClass);
+  ///mountElement(powertrainContent, driveTrainTextNode, mainDataClass);
 
   //** Fuel type
 
-  const fuelTextNode = createSingleWordText('Fuel Type - Primary');
   //mountElement(powertrainContent, fuelTextNode, subDataClass);
 
   //! Body content
 
   //** Vehicle type - format
 
-  const vehicleTypeTextNode = createSingleWordText('Vehicle Type');
   //mountElement(bodyContent, vehicleTypeTextNode, mainDataClass);
 
   //** Body class
 
-  const bodyClassTextNode = createSingleWordText('Body Class');
   //mountElement(bodyContent, bodyClassTextNode, mainDataClass);
 
   //** Steering location
 
-  const steeringTextNode = createSingleWordText('Steering Location');
   //mountElement(bodyContent, steeringTextNode, mainDataClass);
 
   //** Trim
 
-  const trimTextNode = createSingleWordText('Trim');
   //mountElement(bodyContent, trimTextNode, subDataClass);
 
   //! Build location content
@@ -120,22 +163,60 @@ function renderData() {
 
   //** Plant
 
-  const plantName = localStorage.getItem('Plant Company Name');
-  const plantTextNode = document.createTextNode(`Plant Company Name : ${plantName}`);
   //mountElement(buildContentAdditional, plantTextNode, mainDataClass);
 
   //** Manufacturer Name
 
-  const manufacturer = localStorage.getItem('Manufacturer Name');
-  const manufacturerTextNode = document.createTextNode(`Manufacturer Name : ${manufacturer}`);
   //mountElement(buildContentAdditional, manufacturerTextNode, mainDataClass);
 
   //! Additional content
 
   //** Serial Number
-  const serialNumber = getSerialNumber(localStorage.getItem('Vin'));
-  const serialTextNode = document.createTextNode(`Serial Number : ${serialNumber}`);
+
   //mountElement(additionalContent, serialTextNode, mainDataClass);
+
+  //**********************************************************************
+
+  /**
+   * * sectionData() takes in an array of string keys for local storage and returns
+   * * and array of objects with the key value pairs.
+   * @param arr of strings
+   * Returns arr of objects
+   */
+  function sectionData(arr) {
+    return new Promise((resolve, reject) => {
+      try {
+        let sectionArr = [];
+        arr.forEach(key => {
+          const value = localStorage.getItem(key);
+          if (value !== null) {
+            sectionArr.push({ key, value });
+          } else {
+            //TODO: Delete this!
+            console.log('Key : ' + key + ' is null');
+          }
+        });
+        resolve(sectionArr);
+      } catch (error) {
+        reject(error);
+      }
+    });
+  }
+
+  /**
+   * * mountElement() creates a element and places it in the dom.
+   * @param string parent element
+   * @param textNode textNode
+   * @param string childClass - the css class to attach
+   * Returns void
+   */
+  function mountElement(parentElement, textNode, childClass) {
+    if (textNode.textContent.length === 0) return;
+    const newElement = document.createElement('p');
+    newElement.classList.add(childClass);
+    newElement.appendChild(textNode);
+    parentElement.appendChild(newElement);
+  }
 
   //**********************************************************************
 
@@ -256,21 +337,6 @@ function renderData() {
     });
     // Return the node
     return document.createTextNode(text);
-  }
-
-  /**
-   * * mountElement() creates a element and places it in the dom.
-   * @param string parent element
-   * @param textNode textNode
-   * @param string childClass - the css class to attach
-   * Returns void
-   */
-  function mountElement(parentElement, textNode, childClass) {
-    if (textNode.textContent.length === 0) return;
-    const newElement = document.createElement('p');
-    newElement.classList.add(childClass);
-    newElement.appendChild(textNode);
-    parentElement.appendChild(newElement);
   }
 }
 

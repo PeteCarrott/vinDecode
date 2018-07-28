@@ -120,7 +120,10 @@ exports.determineAge = year => {
   if (age < 0) {
     age = 0;
   }
-  return age.toString();
+
+  let ageStr = age.toString();
+
+  return age;
 };
 
 /**

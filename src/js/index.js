@@ -24,7 +24,8 @@ function getAndStoreData() {
   // If user clicked the demo button the input(vin) will be an empty string.
   if (vin === '') {
     // const sampleVin = "1C3CCBBB6DN695936";
-    const sampleVin = 'JF1GPAD60D1803590';
+    // const sampleVin = 'JF1GPAD60D1803590';
+    const sampleVin = '5YJSA1H12FFP71790';
     // This is the demo url.
     url = `https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/${sampleVin}?format=json`;
     // Save vin in array to use with storeDataLocally();
@@ -66,7 +67,6 @@ function storeDataLocally(data, vinArr) {
         localStorage.setItem(vinArr[0].Variable, vinArr[0].Value);
         // Store vin data
         data.forEach(ele => {
-          console.log(ele.Variable + ' : ' + ele.Value);
           localStorage.setItem(ele.Variable, ele.Value);
         });
       }
@@ -83,7 +83,7 @@ function storeDataLocally(data, vinArr) {
  * Returns void
  */
 function loadResultsPage() {
-  //window.location.href = './results.html';
+  window.location.href = './results.html';
 }
 
 /**
