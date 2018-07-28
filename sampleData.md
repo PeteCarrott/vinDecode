@@ -1,356 +1,163 @@
-// https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/JF1GPAD60D1803590?format=json
-
-"Message": "Results returned successfully",
-"SearchCriteria": "VIN:JF1GPAD60D1803590",
-
-\***\*\*\*\*\*\***Vin Info**\*\***\*\***\*\***
-
-"Value": "",
-"Variable": "Suggested VIN",
-
-"Value": "0 - VIN decoded clean. Check Digit (9th position) is correct",
-"Variable": "Error Code",
-
-"Value": "",
-"Variable": "Possible Values",
-
-"Value": "",
-"Variable": "Additional Error Text",
-
-\***\*\*\*\*\*\***Year Make Model Info**\*\***\*\***\*\***
-
-"Value": "2013",
-"Variable": "Model Year",
-
-"Value": "SUBARU",
-"Variable": "Make",
-
-"Value": "Impreza",
-"Variable": "Model",
-
-"Value": "FUJI HEAVY INDUSTRIES U.S.A., INC. (C/O SUBARU OF AMERICA)",
-"Variable": "Manufacturer Name",
-
-\***\*\*\*\*\*\***Powertrain Info**\*\***\*\***\*\***
-
-"Value": null,
-"Variable": "Engine Number of Cylinders",
-
-"Value": "2000.0",
-"Variable": "Displacement (CC)",
-
-"Value": "122.04748818946",
-"Variable": "Displacement (CI)",
-
-"Value": "2.0",
-"Variable": "Displacement (L)",
-
-"Value": null,
-"Variable": "Engine Stroke Cycles",
-
-"Value": null,
-"Variable": "Engine Model",
-
-"Value": null,
-"Variable": "Engine Power (KW)",
-
-"Value": null,
-"Variable": "Fuel Type - Primary",
-
-"Value": null,
-"Variable": "Valve Train Design",
-
-"Value": null,
-"Variable": "Engine Configuration",
-
-"Value": null,
-"Variable": "Fuel Type - Secondary",
-
-"Value": null,
-"Variable": "Fuel Delivery / Fuel Injection Type",
-
-"Value": null,
-"Variable": "Engine Brake (hp)",
-
-"Value": null,
-"Variable": "Cooling Type",
-
-"Value": null,
-"Variable": "Engine Brake (hp) up to",
-
-"Value": null,
-"Variable": "Electrification Level",
-
-"Value": null,
-"Variable": "Other Engine Info",
-
-"Value": "No",
-"Variable": "Turbo",
-
-"Value": "Manual/Standard",
-"Variable": "Transmission Style",
-
-"Value": "6",
-"Variable": "Transmission Speeds",
-
-"Value": null,
-"Variable": "Drive Type",
-
-"Value": null,
-"Variable": "Axles",
-
-\***\*\*\*\*\*\***Build Info**\*\***\*\***\*\***
-
-"Value": "Ota",
-"Variable": "Plant City",
-
-"Value": "Japan",
-"Variable": "Plant Country",
-
-"Value": "FHI",
-"Variable": "Plant Company Name",
-
-"Value": "Gunma",
-"Variable": "Plant State",
-
-\***\*\*\*\*\*\***Body Info**\*\***\*\***\*\***
-
-"Value": null,
-"Variable": "Series",
-
-"Value": "Prm Plus+S/R",
-"Variable": "Trim",
-
-"Value": "PASSENGER CAR",
-"Variable": "Vehicle Type",
-
-"Value": "Wagon",
-"Variable": "Body Class",
-
-"Value": null,
-"Variable": "Keyless Ignition",
-
-"Value": null,
-"Variable": "Wheel Base Type",
-
-"Value": null,
-"Variable": "Gross Vehicle Weight Rating",
-
-"Value": null,
-"Variable": "Bed Length (inches)",
-
-"Value": null,
-"Variable": "Curb Weight (pounds)",
-
-"Value": null,
-"Variable": "Wheel Base (inches)",
-
-"Value": null,
-"Variable": "Wheel Base (inches) up to",
-
-"Value": null,
-"Variable": "Bed Type",
-
-"Value": null,
-"Variable": "Cab Type",
-
-"Value": null,
-"Variable": "Number of Wheels",
-
-"Value": null,
-"Variable": "Steering Location",
-
-"Value": null,
-"Variable": "Number of Seats",
-
-"Value": null,
-"Variable": "Number of Seat Rows",
-
-"Value": null,
-"Variable": "Axle Configuration",
-
-******\*\*******Trailer Info**********\*\***********
-
-"Value": null,
-"Variable": "Trailer Type Connection",
-
-"Value": null,
-"Variable": "Trailer Body Type",
-
-"Value": null,
-"Variable": "Trailer Length (feet)",
-
-******\*\*\*******Brake System Info******\*\*\*\*******
-
-"Value": null,
-"Variable": "Brake System Type",
-
-"Value": null,
-"Variable": "Brake System Description",
-
-******\*\*******Battery Info**********\*\*\***********
-
-"Value": null,
-"Variable": "Battery Info",
-
-"Value": null,
-"Variable": "Battery Type",
-
-"Value": null,
-"Variable": "Number of Battery Cells per Module",
-
-"Value": null,
-"Variable": "Battery Current (Amps)",
-
-"Value": null
-"Variable": "Battery Voltage (Volts)",
-
-"Value": null,
-"Variable": "Battery Energy (KWh)",
-
-"Value": null,
-"Variable": "EV Drive Unit",
-
-"Value": null,
-"Variable": "Battery Current (Amps) up to",
-
-"Value": null,
-"Variable": "Battery Voltage (Volts) up to",
-
-"Value": null,
-"Variable": "Battery Energy (KWh) up to",
-
-"Value": null,
-"Variable": "Number of Battery Modules per Pack",
-
-"Value": null,
-"Variable": "Number of Battery Packs per Vehicle",
-
-"Value": null,
-"Variable": "Charger Level",
-
-"Value": null,
-"Variable": "Charger Power (KW)",
-
-********\*\*********Safety Info********\*\*\*********
-
-"Value": "Manual",
-"Variable": "Seat Belts Type",
-
-"Value": null,
-"Variable": "Other Restraint System Info",
-
-"Value": "1st & 2nd Rows",
-"Variable": "Curtain Air Bag Locations",
-
-"Value": null,
-"Variable": "Seat Cushion Air Bag Locations",
-
-"Value": "1st Row (Driver & Passenger)",
-"Variable": "Front Air Bag Locations",
-
-"Value": null,
-"Variable": "Knee Air Bag Locations",
-
-"Value": "1st Row (Driver & Passenger)",
-"Variable": "Side Air Bag Locations",
-
-"Value": null,
-"Variable": "Driver Assist",
-
-"Value": null,
-"Variable": "Adaptive Cruise Control (ACC)",
-
-"Value": null,
-"Variable": "Adaptive Headlights",
-
-"Value": null,
-"Variable": "Anti-lock Braking System (ABS)",
-
-"Value": null,
-"Variable": "Crash Imminent Braking (CIB)",
-
-"Value": null,
-"Variable": "Blind Spot Detection (BSD)",
-
-"Value": null,
-"Variable": "Electronic Stability Control (ESC)",
-
-"Value": null,
-"Variable": "Traction Control",
-
-"Value": null,
-"Variable": "Forward Collision Warning (FCW)",
-
-"Value": null,
-"Variable": "Lane Departure Warning (LDW)",
-
-"Value": null,
-"Variable": "Lane Keeping Support (LKS)",
-
-"Value": null,
-"Variable": "Rear Visibility System (RSV)",
-
-"Value": null,
-"Variable": "Parking Assist",
-
-"Value": "Direct",
-"Variable": "TPMS",
-
-"Value": null,
-"Variable": "Dynamic Brake Support (DBS)",
-
-"Value": null,
-"Variable": "Pedestrian Automatic Emergency Braking (PAEB)",
-
-"Value": null,
-"Variable": "Auto-Reverse System for Windows and Sunroofs",
-
-"Value": null,
-"Variable": "Automatic Pedestrain Alerting Sound (for Hybrid and EV only)",
-
-"Value": null,
-"Variable": "Automatic Crash Notification (CAN) / Advanced Automatic Crash Notification (AACN)",
-
-"Value": null,
-"Variable": "Event Data Recorder (EDR)",
-
-"Value": null,
-"Variable": "Daytime Running Light (DRL)",
-
-"Value": null,
-"Variable": "Lower Beam Headlamp Light Source",
-
-"Value": null,
-"Variable": "Semiautomatic Headlamp Beam Switching",
-
-"Value": null,
-"Variable": "Adaptive Driving Beam (ADB)",
-
-**\*\***\*\*\***\*\***Bus Info**\*\***\*\*\***\*\***
-
-"Value": null,
-"Variable": "Bus Length (feet)",
-
-"Value": null,
-"Variable": "Bus Floor Configuration Type",
-
-"Value": null,
-"Variable": "Bus Type",
-
-"Value": null,
-"Variable": "Other Bus Info",
-
-**\*\***\*\*\***\*\***Motorcycle Info**\*\***\*\*\***\*\***
-
-"Value": null,
-"Variable": "Custom Motorcycle Type",
-
-"Value": null,
-"Variable": "Motorcycle Suspension Type",
-
-"Value": null,
-"Variable": "Motorcycle Chassis Type",
-
-"Value": null,
-"Variable": "Other Motorcycle Info",
+Vin : 5YJSA1H12FFP71790
+Error Code : 0 - VIN decoded clean. Check Digit (9th position) is correct
+Make : TESLA
+Manufacturer Name : TESLA, INC.
+Model : Model S
+Model Year : 2015
+Plant City : Fremont
+Vehicle Type : PASSENGER CAR
+Plant Country : United States (USA)
+Plant State : California
+Manufacturer Id : 955
+Body Class : Hatchback/Liftback/Notchback
+Doors : 5
+Steering Location : Left Hand Drive (LHD)
+Transmission Style : Automatic
+Battery Info : Battery Capacity: High
+Battery Type : Lithium-ion/Li-Ion
+EV Drive Unit : Single Motor
+Engine Model : 3 Phase A/C Induction (Single Motor)
+Fuel Type - Primary : Electric
+Seat Belts Type : Manual
+Other Restraint System Info : Type 2 Manual seatbelts (FR, SR\*3), PODS
+Front Air Bag Locations : 1st Row (Driver & Passenger)
+Knee Air Bag Locations : 1st Row (Driver & Passenger)
+Side Air Bag Locations : 1st Row (Driver & Passenger)
+Driver Assist : Standard
+Adaptive Cruise Control (ACC) : Standard
+Anti-lock Braking System (ABS) : Standard
+Crash Imminent Braking (CIB) : Standard
+Blind Spot Detection (BSD) : Standard
+Electronic Stability Control (ESC) : Standard
+Traction Control : Standard
+Forward Collision Warning (FCW) : Standard
+Lane Departure Warning (LDW) : Standard
+Lane Keeping Support (LKS) : Standard
+Rear Visibility System (RSV) : Standard
+TPMS : Direct
+Dynamic Brake Support (DBS) : Standard
+Pedestrian Automatic Emergency Braking (PAEB) : Standard
+Auto-Reverse System for Windows and Sunroofs : Standard
+Keyless Ignition : Standard
+Daytime Running Light (DRL) : Standard
+SAE Automation Level : 1
+SAE Automation Level up to : 2
+
+Vin : 1HD1GP4558K319097
+Error Code : 0 - VIN decoded clean. Check Digit (9th position) is correct
+Destination Market : California
+Make : HARLEY DAVIDSON
+Manufacturer Name : HARLEY-DAVIDSON MOTOR COMPANY
+Model : Dyna Wide Glide 105th Anniversary
+Model Year : 2008
+Plant City : Kansas City
+Series : FXDWG ANV
+Vehicle Type : MOTORCYCLE
+Plant Country : United States (USA)
+Plant State : Missouri
+Note : Mid-year or special introduction
+Manufacturer Id : 4249
+Body Class : Motorcycle - Custom
+Engine Number of Cylinders : 2
+Displacement (CC) : 1584
+Displacement (CI) : 96.661610646
+Displacement (L) : 1.584000
+Engine Stroke Cycles : 4
+Engine Model : Twin CAM 96 V-2
+Engine Power (KW) : 52.9447
+Fuel Type - Primary : Gasoline
+Fuel Delivery / Fuel Injection Type : Sequential Fuel Injection (SFI)
+Engine Brake (hp) : 71
+Cooling Type : Air
+Other Motorcycle Info : Heavyweight Motorcycle: 901cc or larger
+
+Vin : SCFEBBELXDGD17560
+Error Code : 0 - VIN decoded clean. Check Digit (9th position) is correct
+Make : ASTON MARTIN
+Manufacturer Name : ASTON MARTIN LAGONDA LIMITED
+Model : V8 Vantage
+Model Year : 2013
+Plant City : Gaydon
+Series : VH2
+Trim : S
+Vehicle Type : PASSENGER CAR
+Plant Country : United Kingdom (UK)
+Note : Convertible (Roadster)
+Manufacturer Id : 956
+Body Class : Cabriolet/Convertible
+Doors : 2
+Steering Location : Left Hand Drive (LHD)
+Number of Seats : 2
+Number of Seat Rows : 1
+Transmission Style : Manual/Standard
+Transmission Speeds : 6
+Engine Number of Cylinders : 8
+Displacement (CC) : 4700.0
+Displacement (CI) : 286.81159724524
+Displacement (L) : 4.7
+Engine Model : AM15
+Engine Power (KW) : 320.7
+Engine Configuration : V-Shaped
+Engine Brake (hp) : 430.065710
+Pretensioner : Yes
+Seat Belts Type : Manual
+Other Restraint System Info : Seat belts = Driver: 3-point ELR + Dual Pretensioner/Dual Stage Load-Limiter, Passenger: 3-point ELR/ALR + Dual Pretensioner/Dual Stage Load-Limiter. Side airbags (in seat).
+Front Air Bag Locations : 1st Row (Driver & Passenger)
+Side Air Bag Locations : 1st Row (Driver & Passenger)
+TPMS : Direct
+
+Vin : 1FV3GFBC0YHA74039
+Error Code : 0 - VIN decoded clean. Check Digit (9th position) is correct
+Make : FREIGHTLINER
+Manufacturer Name : DAIMLER TRUCKS NORTH AMERICA LLC
+Model : FL60
+Model Year : 2000
+Plant City : Mt. Holly
+Vehicle Type : INCOMPLETE VEHICLE
+Plant Country : United States (USA)
+Plant State : North Carolina
+Manufacturer Id : 1024
+Body Class : Truck
+Gross Vehicle Weight Rating : Class 6: 19,501 - 26,000 lb (8,845 - 11,794 kg)
+Cab Type : MDHD: Conventional
+Drive Type : 4x2
+Axle Configuration : SBA - Set Back Axle
+Brake System Type : Hydraulic
+Displacement (CC) : 5900.0
+Displacement (CI) : 360.04009015892
+Displacement (L) : 5.9
+Engine Model : BT5.9/ISB
+Engine Power (KW) : 167.7825
+Fuel Type - Primary : Diesel
+Engine Brake (hp) : 225
+Engine Brake (hp) up to : 275
+
+Vin : JH4KA2650HC000268
+Error Code : 0 - VIN decoded clean. Check Digit (9th position) is correct
+Make : ACURA
+Manufacturer Name : HONDA MOTOR CO., LTD
+Model : Legend
+Model Year : 1987
+Plant City : Saitama
+Trim : L
+Vehicle Type : PASSENGER CAR
+Plant Country : Japan
+Plant Company Name : Saitama Factory Sayama Plant
+Plant State : Sayama
+Trim2 : w/Sunroof
+Note : LEATHER SEATS
+Manufacturer Id : 987
+Body Class : Sedan/Saloon
+Doors : 4
+Transmission Style : Automatic
+Transmission Speeds : 4
+Engine Number of Cylinders : 6
+Displacement (CC) : 2500.00
+Displacement (CI) : 152.55936023683
+Displacement (L) : 2.5000000
+Engine Model : C25A1
+Valve Train Design : Single Overhead Cam (SOHC)
+Engine Configuration : V-Shaped
+Other Restraint System Info : SEAT BELTS
+Front Air Bag Locations : Driver Seat Only
+Anti-lock Braking System (ABS) : Standard

@@ -66,6 +66,7 @@ function storeDataLocally(data, vinArr) {
         localStorage.setItem(vinArr[0].Variable, vinArr[0].Value);
         // Store vin data
         data.forEach(ele => {
+          console.log(ele.Variable + ' : ' + ele.Value);
           localStorage.setItem(ele.Variable, ele.Value);
         });
       }
@@ -82,7 +83,7 @@ function storeDataLocally(data, vinArr) {
  * Returns void
  */
 function loadResultsPage() {
-  window.location.href = './results.html';
+  //window.location.href = './results.html';
 }
 
 /**
