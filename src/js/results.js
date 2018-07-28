@@ -47,8 +47,7 @@ function renderData() {
     'Displacement (CI)',
     'Engine Brake (hp)',
     'Value Train Design',
-    'Cooling Type',
-    'Fuel Type - Primary'
+    'Cooling Type'
   ];
   const transKeys = ['Transmission Style', 'Transmission Speeds', 'Drive Type'];
   const hybridKeys = ['Battery Type', 'Battery Info', 'EV Drive Model'];
@@ -120,17 +119,25 @@ function renderData() {
 
   //! Powertrain content
 
-  //** Engine Number of Cylinders
+  //** Engine Data except Fuel Type
+  // Build text nodes and mount.
+  engineDataArr.then(arr => {
+    processData(arr, powertrainContent, mainDataClass);
+  });
 
-  //mountElement(powertrainContent, cylindersTextNode, mainDataClass);
-
-  //mountElement(powertrainContent, displacementTextNode, mainDataClass);
-
-  //mountElement(powertrainContent, displacementTextNode, mainDataClass);
+  //** Fuel Type
+  // Get fuel type
+  const fuelType = localStorage.getItem('Fuel Type - Primary');
+  // Build text node
+  const fuelTextNode = document.createTextNode(`Fuel Type : ${fuelType}`);
+  // Mount to DOM
+  mountElement(powertrainContent, fuelTextNode, subDataClass);
 
   //** Drivetrain config
 
-  ///mountElement(powertrainContent, driveTrainTextNode, mainDataClass);
+  transDataArr.then(arr => {
+    processData(arr, powertrainContent, mainDataClass);
+  });
 
   //** Fuel type
 
@@ -201,6 +208,21 @@ function renderData() {
       } catch (error) {
         reject(error);
       }
+    });
+  }
+
+  /**
+   * * processData() creates elements and mounts each to the DOM.
+   * @param arr The data arr after the promise is resolved.
+   * @param parentElement The parent element each new element will be placed in.
+   * @param cssClass The class attached to each new element.
+   */
+  function processData(arr, parentElement, cssClass) {
+    arr.forEach(ele => {
+      // For each element build text nodes
+      let textNode = document.createTextNode(`${ele.key} : ${ele.value}`);
+      // Mount to DOM
+      mountElement(parentElement, textNode, cssClass);
     });
   }
 
