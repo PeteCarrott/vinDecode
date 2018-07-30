@@ -28,17 +28,22 @@ function renderData() {
   localStorage.setItem('Make', make_formatted);
 
   // Format numbers for displacement
-  //TODO: Format liters too.
+  let dispL = localStorage.getItem('Displacement (L)');
   let dispCC = localStorage.getItem('Displacement (CC)');
   let dispCI = localStorage.getItem('Displacement (CI)');
 
+  if (dispL !== null) {
+    const l_formatted = parseFloat(dispL, 10).toFixed(2);
+    localStorage.setItem('Displacement (L)', l_formatted);
+  }
+
   if (dispCC !== null) {
-    const cc_formatted = parseFloat(localStorage.getItem('Displacement (CC)'), 10);
+    const cc_formatted = parseFloat(dispCC, 10).toFixed(0);
     localStorage.setItem('Displacement (CC)', cc_formatted);
   }
 
   if (dispCI !== null) {
-    const ci_formatted = parseFloat(localStorage.getItem('Displacement (CI)'), 10).toFixed(0);
+    const ci_formatted = parseFloat(dispCI, 10).toFixed(0);
     localStorage.setItem('Displacement (CI)', ci_formatted);
   }
 
