@@ -9,6 +9,7 @@ function renderData() {
   const bodyContent = document.querySelector('.body-content');
   const buildContentMain = document.querySelector('.build-content-main');
   const buildContentAdditional = document.querySelector('.build-content-additional');
+  const safetyContent = document.querySelector('safety-content');
   const additionalContent = document.querySelector('.additional-content');
 
   // Classes for elements
