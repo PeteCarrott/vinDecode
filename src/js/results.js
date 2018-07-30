@@ -105,6 +105,7 @@ function renderData() {
   //***************************************************************************
 
   //** Vin
+
   // Add vin to the element
   vin.innerText = vinData;
 
@@ -235,8 +236,14 @@ function renderData() {
   //! Additional content
 
   //** Serial Number
+  const serialNum = getSerialNumber(vinData);
 
-  //mountElement(additionalContent, serialTextNode, mainDataClass);
+  if (serialNum !== null) {
+    // Build text node
+    const serialTextNode = document.createTextNode(`Serial Number : ${serialNum}`);
+    // Mount to DOM
+    mountElement(additionalContent, serialTextNode, mainDataClass);
+  }
 
   //**********************************************************************
 
