@@ -23,7 +23,7 @@ function getAndStoreData() {
 
   // If user clicked the demo button the input(vin) will be an empty string.
   if (vin === '') {
-    // const sampleVin = "1C3CCBBB6DN695936";
+    //const sampleVin = '1C3CCBBB6DN695936'; // Chrysler 200
     const sampleVin = 'JF1GPAD60D1803590'; // Subaru
     //const sampleVin = '5YJSA1H12FFP71790'; // Tesla
     // This is the demo url.

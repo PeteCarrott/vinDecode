@@ -49,8 +49,8 @@ function renderData() {
 
   // Keys for local storage
   const vehicleKeys = ['Model Year', 'Make', 'Model'];
-  const buildKeys = ['Plant City', 'Plant State', 'Plant Country', 'Manufacturer Name'];
-  const bodyKeys = ['Vehicle Type', 'Body Class', 'Note', 'Series', 'Trim', 'Trim2', 'Doors', 'Steering Location'];
+  const buildKeys = ['Plant Company Name', 'Manufacturer Name'];
+  const bodyKeys = ['Vehicle Type', 'Body Class', 'Note', 'Series', 'Trim2', 'Doors', 'Steering Location'];
   const engineKeys = [
     'Engine Model',
     'Engine Config',
@@ -154,52 +154,75 @@ function renderData() {
   }
 
   //** Drivetrain config
-
+  // Build text nodes and mount.
   transDataArr.then(arr => {
     processData(arr, powertrainContent, mainDataClass);
   });
 
   //** Hybrid Data
-
+  // Build text nodes and mount.
   hybridDataArr.then(arr => {
     processData(arr, powertrainContent, mainDataClass);
   });
 
   //! Body content
 
-  //** Body Data
+  //** Body Data except Trim
 
-  // Build text nodes
+  // Build text nodes and mount.
+  bodyDataArr.then(arr => {
+    processData(arr, bodyContent, mainDataClass);
+  });
 
-  //mountElement(bodyContent, vehicleTypeTextNode, mainDataClass);
+  //**  Vehicle Trim
+  const vehTrim = localStorage.getItem('Trim');
 
-  //** Body class
-
-  //mountElement(bodyContent, bodyClassTextNode, mainDataClass);
-
-  //** Steering location
-
-  //mountElement(bodyContent, steeringTextNode, mainDataClass);
-
-  //** Trim
-
-  //mountElement(bodyContent, trimTextNode, subDataClass);
+  if (vehTrim !== null) {
+    // Build text node
+    const trimTextNode = document.createTextNode(vehTrim);
+    // Mount to DOM
+    mountElement(bodyContent, trimTextNode, subDataClass);
+  }
 
   //! Build location content
 
   //** City, State
 
+  // Build text nodes and mount.
+  const buildCity = localStorage.getItem('Plant City');
+  const buildState = localStorage.getItem('Plant State');
+
+  if (buildCity && buildState !== null) {
+    // Build text node for city, state
+    const buildTextNode = document.createTextNode(`${buildCity}, ${buildState}`);
+    // Mount to DOM
+    mountElement(buildContentMain, buildTextNode, mainDataClass);
+  }
+
   //** Country
+
+  const buildCountry = localStorage.getItem('Plant Country');
+
+  if (buildCountry !== null) {
+    // Build text node
+    const countryTextNode = document.createTextNode(buildCountry);
+    // Mount to DOM
+    mountElement(buildContentMain, countryTextNode, subDataClass);
+  }
 
   //** Map
 
-  //** Plant
+  // Check if info for map is available.
+  if (buildCity !== null && buildState !== null && buildCountry !== null) {
+    console.log('We can attempt to build a map with', buildCity, buildState, buildCountry);
+  }
 
-  //mountElement(buildContentAdditional, plantTextNode, mainDataClass);
+  //** Plant and Manufacturer Name
 
-  //** Manufacturer Name
-
-  //mountElement(buildContentAdditional, manufacturerTextNode, mainDataClass);
+  // Build text nodes and mount.
+  buildDataArr.then(arr => {
+    processData(arr, buildContentAdditional, mainDataClass);
+  });
 
   //! Additional content
 
