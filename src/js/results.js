@@ -27,10 +27,19 @@ function renderData() {
   localStorage.setItem('Make', make_formatted);
 
   // Format numbers for displacement
-  const cc_formatted = parseFloat(localStorage.getItem('Displacement (CC)'), 10);
-  localStorage.setItem('Displacement (CC)', cc_formatted);
-  const ci_formatted = parseFloat(localStorage.getItem('Displacement (CI)'), 10).toFixed(0);
-  localStorage.setItem('Displacement (CI)', ci_formatted);
+
+  let dispCC = localStorage.getItem('Displacement (CC)');
+  let dispCI = localStorage.getItem('Displacement (CI)');
+
+  if (dispCC !== null) {
+    const cc_formatted = parseFloat(localStorage.getItem('Displacement (CC)'), 10);
+    localStorage.setItem('Displacement (CC)', cc_formatted);
+  }
+
+  if (dispCI !== null) {
+    const ci_formatted = parseFloat(localStorage.getItem('Displacement (CI)'), 10).toFixed(0);
+    localStorage.setItem('Displacement (CI)', ci_formatted);
+  }
 
   //***************************************************************************
   //** Structure Data */
@@ -83,11 +92,11 @@ function renderData() {
 
   // Data Arrays
   const vehicleDataArr = sectionData(vehicleKeys);
-  const buildDataArr = sectionData(buildKeys);
-  const bodyDataArr = sectionData(bodyKeys);
   const engineDataArr = sectionData(engineKeys);
   const transDataArr = sectionData(transKeys);
   const hybridDataArr = sectionData(hybridKeys);
+  const bodyDataArr = sectionData(bodyKeys);
+  const buildDataArr = sectionData(buildKeys);
   const safetyDataArr = sectionData(safetyKeys);
 
   //***************************************************************************
@@ -100,7 +109,7 @@ function renderData() {
 
   //! Vehicle content
 
-  //** Year, Make, Model, Age
+  //** Year, Make, Model
 
   // Build a text str from the array
   vehicleDataArr.then(arr => {
@@ -114,6 +123,8 @@ function renderData() {
     const vehTextNode = document.createTextNode(vehStr);
     // Place info in the DOM
     mountElement(vehicleContent, vehTextNode, mainDataClass);
+
+    //** Age
 
     // Use model year to determine age
     const vehicleAge = determineAge(arr[0].value);
@@ -148,9 +159,17 @@ function renderData() {
     processData(arr, powertrainContent, mainDataClass);
   });
 
+  //** Hybrid Data
+
+  hybridDataArr.then(arr => {
+    processData(arr, powertrainContent, mainDataClass);
+  });
+
   //! Body content
 
-  //** Vehicle type - format
+  //** Body Data
+
+  // Build text nodes
 
   //mountElement(bodyContent, vehicleTypeTextNode, mainDataClass);
 
@@ -206,7 +225,7 @@ function renderData() {
             sectionArr.push({ key, value });
           } else {
             //TODO: Delete this!
-            console.log('Key : ' + key + ' is null');
+            console.log('Key : ' + key + ' : ' + value);
           }
         });
         resolve(sectionArr);
@@ -224,6 +243,7 @@ function renderData() {
    */
   function processData(arr, parentElement, cssClass) {
     arr.forEach(ele => {
+      console.log(ele.key + ' = ' + ele.value);
       // For each element build text nodes
       let textNode = document.createTextNode(`${ele.key} : ${ele.value}`);
       // Mount to DOM
