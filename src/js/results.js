@@ -9,7 +9,7 @@ function renderData() {
   const bodyContent = document.querySelector('.body-content');
   const buildContentMain = document.querySelector('.build-content-main');
   const buildContentAdditional = document.querySelector('.build-content-additional');
-  const safetyContent = document.querySelector('safety-content');
+  const safetyContent = document.querySelector('.safety-content');
   const additionalContent = document.querySelector('.additional-content');
 
   // Classes for elements
@@ -225,6 +225,13 @@ function renderData() {
     processData(arr, buildContentAdditional, mainDataClass);
   });
 
+  //! Safety content
+
+  // Build text nodes and mount.
+  safetyDataArr.then(arr => {
+    processData(arr, safetyContent, mainDataClass);
+  });
+
   //! Additional content
 
   //** Serial Number
@@ -267,7 +274,6 @@ function renderData() {
    */
   function processData(arr, parentElement, cssClass) {
     arr.forEach(ele => {
-      console.log(ele.key + ' = ' + ele.value);
       // For each element build text nodes
       let textNode = document.createTextNode(`${ele.key} : ${ele.value}`);
       // Mount to DOM
