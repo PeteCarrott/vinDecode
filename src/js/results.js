@@ -104,8 +104,6 @@ function renderData() {
   const buildDataArr = sectionData(buildKeys);
   const safetyDataArr = sectionData(safetyKeys);
 
-  //Todo: Check for empty arrays and data. Hide empty sections.
-
   //***************************************************************************
   //** Start Building */
   //***************************************************************************
@@ -121,6 +119,8 @@ function renderData() {
 
   // Build a text str from the array
   vehicleDataArr.then(arr => {
+    checkForEmptyData(arr) ? console.log('no data') : console.log('found data');
+
     let vehStr = '';
     // Concat the string with spaces
     arr.forEach(ele => {
@@ -236,7 +236,7 @@ function renderData() {
 
   // Build text nodes and mount.
   safetyDataArr.then(arr => {
-    processData(arr, safetyContent, mainDataClass);
+    checkForEmptyData(arr) ? hide('safety-info') : processData(arr, safetyContent, mainDataClass);
   });
 
   //! Additional content
@@ -252,6 +252,28 @@ function renderData() {
   }
 
   //**********************************************************************
+
+  /**
+   * * checkForEmptyData() Check for empty data and hides empty sections.
+   * @param arr of strings
+   * Returns boolean
+   */
+  function checkForEmptyData(arr) {
+    if (arr.length > 0) return false;
+    else return true;
+  }
+
+  /**
+   * * hideEmptySection() Selects an element and hides empty sections
+   * @param string class name of section
+   * Returns void
+   */
+  function hide(sectionClassName) {
+    // Select the element by the class name
+    const selector = document.querySelector(`.${sectionClassName}`);
+    // Add a css class to hide the element
+    selector.classList.add('hide');
+  }
 
   /**
    * * sectionData() takes in an array of string keys for local storage and returns
