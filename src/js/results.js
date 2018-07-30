@@ -28,7 +28,7 @@ function renderData() {
   localStorage.setItem('Make', make_formatted);
 
   // Format numbers for displacement
-
+  //TODO: Format liters too.
   let dispCC = localStorage.getItem('Displacement (CC)');
   let dispCI = localStorage.getItem('Displacement (CI)');
 
@@ -69,7 +69,6 @@ function renderData() {
   const hybridKeys = ['Battery Type', 'Battery Info', 'EV Drive Model'];
   const safetyKeys = [
     'Seat Belts Type',
-    'Other Restraint System Info',
     'Front Air Bag Locations',
     'Knee Air Bag Locations',
     'Side Air Bag Locations',
@@ -99,6 +98,8 @@ function renderData() {
   const bodyDataArr = sectionData(bodyKeys);
   const buildDataArr = sectionData(buildKeys);
   const safetyDataArr = sectionData(safetyKeys);
+
+  //Todo: Check for empty arrays and data. Hide empty sections.
 
   //***************************************************************************
   //** Start Building */
@@ -181,7 +182,7 @@ function renderData() {
 
   if (vehTrim !== null) {
     // Build text node
-    const trimTextNode = document.createTextNode(vehTrim);
+    const trimTextNode = document.createTextNode(`Trim: ${vehTrim}`);
     // Mount to DOM
     mountElement(bodyContent, trimTextNode, subDataClass);
   }
