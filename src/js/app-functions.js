@@ -98,9 +98,6 @@ exports.storageAvailable = type => {
  * @param string
  * Returns string
  */
-//TODO: Need to test for special characters. (Prm Plus+S/R)
-//TODO: Need to test for long strings (FUJI HEAVY INDUSTRIES U.S.A., INC. (C/O SUBARU OF AMERICA))
-//TODO: Need to test for numbers. 1075
 exports.capitalize = str => {
   if (str === null) return str;
   const firstLetter = str.charAt(0).toUpperCase();
@@ -123,12 +120,15 @@ exports.determineAge = year => {
 
   let text = '';
 
-  if (age === 0) {
-    text = 'Less than a year old';
-  } else if (age === 1) {
-    text = '1 year old';
-  } else {
-    text = `${age} years old`;
+  switch (age) {
+    case 0:
+      text = 'Less than a year old';
+      break;
+    case 1:
+      text = '1 year old';
+      break;
+    default:
+      text = `${age} years old`;
   }
 
   return text;
@@ -145,5 +145,3 @@ exports.getSerialNumber = vin => {
   }
   return undefined;
 };
-
-// TODO: need to check functions for undefined or null conditions.

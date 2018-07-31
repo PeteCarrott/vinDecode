@@ -108,41 +108,44 @@ function renderData() {
   //** Start Building */
   //***************************************************************************
 
-  //** Vin
+  //! Vin *********************************************************************
 
   // Add vin to the element
   vin.innerText = vinData;
 
-  //! Vehicle content
+  //! Vehicle content *********************************************************
 
   //** Year, Make, Model
 
   // Build a text str from the array
   vehicleDataArr.then(arr => {
-    checkForEmptyData(arr) ? console.log('no data') : console.log('found data');
+    // Check if the data array is empty
+    if (checkForEmptyData(arr)) {
+      hide('vehicle'); // Hide the vehicle section.
+    } else {
+      let vehStr = '';
+      // Concat the string with spaces
+      arr.forEach(ele => {
+        vehStr += ele.value + ' ';
+      });
 
-    let vehStr = '';
-    // Concat the string with spaces
-    arr.forEach(ele => {
-      vehStr += ele.value + ' ';
-    });
+      // Use the new string for the text node
+      const vehTextNode = document.createTextNode(vehStr);
+      // Place info in the DOM
+      mountElement(vehicleContent, vehTextNode, mainDataClass);
 
-    // Use the new string for the text node
-    const vehTextNode = document.createTextNode(vehStr);
-    // Place info in the DOM
-    mountElement(vehicleContent, vehTextNode, mainDataClass);
+      //** Age
 
-    //** Age
-
-    // Use model year to determine age
-    const vehicleAge = determineAge(arr[0].value);
-    // Create text node for age
-    const vehAgeTextNode = document.createTextNode(vehicleAge);
-    /// Place age in DOM
-    mountElement(vehicleContent, vehAgeTextNode, subDataClass);
+      // Use model year to determine age
+      const vehicleAge = determineAge(arr[0].value);
+      // Create text node for age
+      const vehAgeTextNode = document.createTextNode(vehicleAge);
+      /// Place age in DOM
+      mountElement(vehicleContent, vehAgeTextNode, subDataClass);
+    }
   });
 
-  //! Powertrain content
+  //! Powertrain content ******************************************************
 
   //** Engine Data except Fuel Type
   // Build text nodes and mount.
@@ -173,16 +176,17 @@ function renderData() {
     processData(arr, powertrainContent, mainDataClass);
   });
 
-  //! Body content
+  //! Body content **********************************************************************
 
   //** Body Data except Trim
 
   // Build text nodes and mount.
   bodyDataArr.then(arr => {
-    processData(arr, bodyContent, mainDataClass);
+    checkForEmptyData(arr) ? hide('body') : processData(arr, bodyContent, mainDataClass);
   });
 
   //**  Vehicle Trim
+
   const vehTrim = localStorage.getItem('Trim');
 
   if (vehTrim !== null) {
@@ -192,7 +196,7 @@ function renderData() {
     mountElement(bodyContent, trimTextNode, subDataClass);
   }
 
-  //! Build location content
+  //! Build location content ****************************************************************
 
   //** City, State
 
@@ -222,24 +226,24 @@ function renderData() {
 
   // Check if info for map is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
-    console.log('We can attempt to build a map with', buildCity, buildState, buildCountry);
+    // Run map functions.
   }
 
   //** Plant and Manufacturer Name
 
   // Build text nodes and mount.
   buildDataArr.then(arr => {
-    processData(arr, buildContentAdditional, mainDataClass);
+    checkForEmptyData(arr) ? hide('build-location') : processData(arr, buildContentAdditional, mainDataClass);
   });
 
-  //! Safety content
+  //! Safety content ******************************************************************************************
 
   // Build text nodes and mount.
   safetyDataArr.then(arr => {
     checkForEmptyData(arr) ? hide('safety-info') : processData(arr, safetyContent, mainDataClass);
   });
 
-  //! Additional content
+  //! Additional content **************************************************************************************
 
   //** Serial Number
   const serialNum = getSerialNumber(vinData);
@@ -289,9 +293,6 @@ function renderData() {
           const value = localStorage.getItem(key);
           if (value !== null) {
             sectionArr.push({ key, value });
-          } else {
-            //TODO: Delete this!
-            console.log('Key : ' + key + ' : ' + value);
           }
         });
         resolve(sectionArr);

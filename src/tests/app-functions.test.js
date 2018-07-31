@@ -14,6 +14,14 @@ test('Capitalizes only first letter of string', () => {
   expect(app.capitalize('wORD')).toBe('Word');
 });
 
+test('Capitalizes only first letter of string', () => {
+  expect(app.capitalize('wORD123')).toBe('Word123');
+});
+
+test('Capitalizes only first letter of string', () => {
+  expect(app.capitalize('wORD123*D')).toBe('Word123*d');
+});
+
 test('Get age based on model year', () => {
   expect(app.determineAge('2015')).toBe('3 years old');
 });
