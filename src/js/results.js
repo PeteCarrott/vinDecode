@@ -226,7 +226,8 @@ function renderData() {
 
   // Check if info for map is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
-    // Run map functions.
+    // Build element for map
+    buildMapElement();
   }
 
   //** Plant and Manufacturer Name
@@ -256,6 +257,18 @@ function renderData() {
   }
 
   //**********************************************************************
+
+  /**
+   * * buildMapElement()
+   *
+   */
+  function buildMapElement() {
+    const mapDiv = document.createElement('div');
+    mapDiv.classList.add('.build-content-map');
+    const sibling = document.querySelector('.build-content-main');
+    // Insert after sibling
+    sibling.parentNode.insertBefore(mapDiv, sibling.nextSibling);
+  }
 
   /**
    * * checkForEmptyData() Check for empty data and hides empty sections.
