@@ -1,4 +1,6 @@
 import { capitalize, determineAge, getSerialNumber } from './app-functions';
+import loadGoogleMapsApi from 'load-google-maps-api';
+import config from '../../config';
 import '../style/results.scss';
 
 function renderData() {
@@ -228,6 +230,10 @@ function renderData() {
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
     // Build element for map
     buildMapElement();
+    // Geolocation
+    //TODO: need to pass lat and lng to initMap()
+    // Build map
+    initMap();
   }
 
   //** Plant and Manufacturer Name
@@ -264,10 +270,31 @@ function renderData() {
    */
   function buildMapElement() {
     const mapDiv = document.createElement('div');
-    mapDiv.classList.add('.build-content-map');
+    mapDiv.classList.add('content-wrapper');
+    mapDiv.classList.add('build-content-map');
     const sibling = document.querySelector('.build-content-main');
     // Insert after sibling
     sibling.parentNode.insertBefore(mapDiv, sibling.nextSibling);
+  }
+
+  /**
+   *
+   */
+  function initMap() {
+    const mapDiv = document.querySelector('.build-content-map');
+    loadGoogleMapsApi({ key: config.x })
+      .then(function(googleMaps) {
+        new googleMaps.Map(mapDiv, {
+          center: {
+            lat: 51.508742,
+            lng: -0.12085
+          },
+          zoom: 12
+        });
+      })
+      .catch(function(error) {
+        console.error(error);
+      });
   }
 
   /**
