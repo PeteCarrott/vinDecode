@@ -230,10 +230,10 @@ function renderData() {
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
     // Build element for map
     buildMapElement();
-    // Geolocation
-    //TODO: need to pass lat and lng to initMap()
+    // Geocoding
+    getCords(buildCity, buildState, buildCountry);
     // Build map
-    initMap();
+    //initMap();
   }
 
   //** Plant and Manufacturer Name
@@ -275,6 +275,17 @@ function renderData() {
     const sibling = document.querySelector('.build-content-main');
     // Insert after sibling
     sibling.parentNode.insertBefore(mapDiv, sibling.nextSibling);
+  }
+
+  function getCords(city, state, country) {
+    //Format the locations
+
+    // Build url
+
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=,+${city},+${state}&key=${config.x}`;
+
+    console.log(url);
+    //locationInfo =
   }
 
   /**

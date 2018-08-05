@@ -45,3 +45,15 @@ test('Return serial number from vin', () => {
 test('Return serial number from vin', () => {
   expect(app.getSerialNumber('BBB6DN695936')).toBe(undefined);
 });
+
+test('Format location for geocoding url', () => {
+  expect(app.formatLocation('Sejong City')).toBe('Sejong+City');
+});
+
+test('Format location for geocoding url', () => {
+  expect(app.formatLocation('New York City')).toBe('New+York+City');
+});
+
+test('Format location for geocoding url', () => {
+  expect(app.formatLocation('Austin')).toBe('Austin');
+});

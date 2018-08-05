@@ -145,3 +145,15 @@ exports.getSerialNumber = vin => {
   }
   return undefined;
 };
+
+/**
+ * * formatLocation() returns a string with spaces replaced by plus chars
+ * The function is used for google geocoding api
+ * @param string location
+ * Returns formatted string
+ */
+exports.formatLocation = location => {
+  const arrOfStrings = location.split(' ');
+  const reducer = (accumulator, nextValue) => accumulator + '+' + nextValue;
+  return arrOfStrings.reduce(reducer);
+};
