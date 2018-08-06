@@ -1,4 +1,4 @@
-import { capitalize, determineAge, getSerialNumber } from './app-functions';
+import { capitalize, determineAge, getSerialNumber, formatLocation } from './app-functions';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import config from '../../config';
 import '../style/results.scss';
@@ -230,10 +230,8 @@ function renderData() {
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
     // Build element for map
     buildMapElement();
-    // Geocoding
-    getCords(buildCity, buildState, buildCountry);
-    // Build map
-    //initMap();
+    // Get coordinates and build map
+    getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
   }
 
   //** Plant and Manufacturer Name
@@ -265,8 +263,8 @@ function renderData() {
   //**********************************************************************
 
   /**
-   * * buildMapElement()
-   *
+   * * buildMapElement() mounts a div at will contain the map
+   * Returns void
    */
   function buildMapElement() {
     const mapDiv = document.createElement('div');
@@ -277,28 +275,41 @@ function renderData() {
     sibling.parentNode.insertBefore(mapDiv, sibling.nextSibling);
   }
 
-  function getCords(city, state, country) {
+  /**
+   * * getCoords() returns the lat and lng of the city, state.
+   * @param {string} city
+   * @param {string} state
+   * Returns a promise
+   */
+  function getCoords(city, state) {
     //Format the locations
-
+    const c = formatLocation(city);
+    const s = formatLocation(state);
     // Build url
-
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=,+${city},+${state}&key=${config.x}`;
-
-    console.log(url);
-    //locationInfo =
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${c},+${s}&key=${config.x}`;
+    // Fetch using the google maps geocoding api
+    return fetch(url)
+      .then(res => {
+        if (!res.ok) throw new Error(error);
+        return res.json();
+      })
+      .then(myJSON => myJSON.results[0].geometry.location)
+      .catch(error => console.log(error)); //TODO: handle error
   }
 
   /**
-   *
+   * * initMap() takes the location coordinates and build a map.
+   * Uses the google map api
+   * @param {object} coords an object containing the lat and lng.
    */
-  function initMap() {
+  function initMap(coords) {
     const mapDiv = document.querySelector('.build-content-map');
     loadGoogleMapsApi({ key: config.x })
       .then(function(googleMaps) {
         new googleMaps.Map(mapDiv, {
           center: {
-            lat: 51.508742,
-            lng: -0.12085
+            lat: coords.lat,
+            lng: coords.lng
           },
           zoom: 12
         });
