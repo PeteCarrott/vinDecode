@@ -303,15 +303,20 @@ function renderData() {
    * @param {object} coords an object containing the lat and lng.
    */
   function initMap(coords) {
+    console.log(coords);
     const mapDiv = document.querySelector('.build-content-map');
     loadGoogleMapsApi({ key: config.x })
       .then(function(googleMaps) {
-        new googleMaps.Map(mapDiv, {
+        const map = new googleMaps.Map(mapDiv, {
           center: {
             lat: coords.lat,
             lng: coords.lng
           },
-          zoom: 12
+          zoom: 10
+        });
+        new googleMaps.Marker({
+          position: coords,
+          map: map
         });
       })
       .catch(function(error) {

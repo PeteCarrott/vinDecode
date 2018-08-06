@@ -26,8 +26,8 @@ function getAndStoreData() {
     localStorage.clear();
     //const sampleVin = '1C3CCBBB6DN695936'; // Chrysler 200 // No map data
     //const sampleVin = 'JF1GPAD60D1803590'; // Subaru
-    //const sampleVin = '5YJSA1H12FFP71790'; // Tesla
-    const sampleVin = '1HD1GP4558K319097'; // Harley Davidson
+    const sampleVin = '5YJSA1H12FFP71790'; // Tesla
+    //const sampleVin = '1HD1GP4558K319097'; // Harley Davidson
     //const sampleVin = 'SCFEBBELXDGD17560'; // Aston Martin
     //const sampleVin = '1FV3GFBC0YHA74039'; // Daimler Large Truck
     //const sampleVin = 'JH4KA2650HC000268'; // Honda

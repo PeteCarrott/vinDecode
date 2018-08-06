@@ -8,7 +8,10 @@
     "disp",
     "displacment",
     "drivetrain",
+    "fv",
     "geocoding",
+    "gfbc",
+    "gpad",
     "hamamatsu",
     "liftback",
     "mdhd",
@@ -17,12 +20,14 @@
     "paeb",
     "powertrain",
     "pretensioner",
+    "scfebbelxdgd",
     "sgdi",
     "sohc",
     "stoichiometric",
     "supermoto",
     "tpms",
     "vindecode",
+    "yha",
     "yjsa"
   ]
 }
