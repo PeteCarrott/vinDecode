@@ -1,10 +1,12 @@
 @import 'colors';
+@import 'mixins';
 
 body {
   height: 100vh;
   width: 100vw;
   margin: 0;
   padding: 0;
+  @include fonts;
 }
 
 .main {
@@ -15,24 +17,71 @@ body {
   align-items: center;
 }
 
-.section-form {
+.logo__title {
+  font-size: 2em;
+  font-weight: 400;
+}
+
+.form-wrapper {
   width: 100vw;
   display: flex;
-  justify-content: center;
 }
 
 .form {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
 }
 
-.form--input {
-  width: 60%;
+.form__label {
+  padding-bottom: 10px;
+}
+
+.form__input-wrapper {
+  display: flex;
+  border: 1px solid $color-secondary;
   height: 35px;
-  padding: 0;
-  border: 2px solid black;
+  padding: 5px;
+  @include main-shadow;
+}
+
+.form__input {
+  border: none;
+  border-right: 1px solid $color-secondary;
+  flex-basis: 65%;
+  font-size: 1.2em;
+  letter-spacing: 2px;
+
+  &:active {
+    outline-color: $color-primary;
+  }
+
+  &:focus {
+    outline-color: $color-primary;
+  }
+}
+
+.form__button {
+  flex-basis: 35%;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-left: 5px;
+  color: $color-font-dark;
+  background-color: $color-background;
 }
 
 .footer {
-  margin-top: 50px;
+  margin-top: 150px;
+}
+
+.footer__button {
+  transform: rotate(-30deg);
+  cursor: pointer;
+  border: none;
+  font-size: 1em;
+  background: $color-background;
+  color: $color-font-dark;
 }

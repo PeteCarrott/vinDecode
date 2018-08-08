@@ -1,2 +1,6 @@
-$bgColor: white;
-$fontColor: black;
+$color-primary: lightblue;
+$color-secondary: black;
+$color-font-dark: black;
+$color-font-light: white;
+$color-background: white;
+$color-shadow: scale-color($color-font-dark, $lightness: 60%);

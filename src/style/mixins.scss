@@ -1,0 +1,10 @@
+@import './colors';
+
+@mixin main-shadow {
+  box-shadow: 2px 5px 10px $color-shadow;
+}
+
+@mixin fonts {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen-Sans, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+}

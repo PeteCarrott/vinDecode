@@ -2,13 +2,13 @@ import app from './app-functions';
 import '../style/index.scss';
 
 // Set up listener on decode button
-document.querySelector('.form--submit').addEventListener('click', e => {
+document.querySelector('.form__button').addEventListener('click', e => {
   getAndStoreData();
   e.preventDefault();
 });
 
 // Set up listener on demo button
-document.querySelector('.footer--button').addEventListener('click', getAndStoreData);
+document.querySelector('.footer__button').addEventListener('click', getAndStoreData);
 
 /**
  * * getAndStoreData() is the starting function for the application.
@@ -16,7 +16,7 @@ document.querySelector('.footer--button').addEventListener('click', getAndStoreD
  * Returns void
  */
 function getAndStoreData() {
-  const vin = document.querySelector('.form--input').value;
+  const vin = document.querySelector('.form__input').value;
   // This array will store an object containing the vin.
   const vinArr = [];
   let url = '';
