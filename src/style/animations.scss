@@ -1,0 +1,22 @@
+@mixin animateGear($name) {
+  animation: $name 20s infinite linear;
+}
+
+@mixin gearKeyframes {
+  @keyframes turnLeft {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(-360deg);
+    }
+  }
+  @keyframes turnRight {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+}

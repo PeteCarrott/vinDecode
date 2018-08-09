@@ -1,5 +1,6 @@
 @import 'colors';
 @import 'mixins';
+@import 'animations';
 
 body {
   height: 100vh;
@@ -17,10 +18,37 @@ body {
   align-items: center;
 }
 
+.logo {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .logo__title {
+  margin: 0;
   font-size: 2em;
   font-weight: 400;
 }
+
+.logo__svg {
+  position: relative;
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+.logo__gear-left {
+  @include animateGear(turnLeft);
+}
+
+.logo__gear-right {
+  @include animateGear(turnRight);
+  position: absolute;
+  left: 36px;
+  top: -7px;
+}
+
+@include gearKeyframes;
 
 .form-wrapper {
   width: 100vw;
@@ -52,11 +80,9 @@ body {
   flex-basis: 65%;
   font-size: 1.2em;
   letter-spacing: 2px;
-
   &:active {
     outline-color: $color-primary;
   }
-
   &:focus {
     outline-color: $color-primary;
   }
