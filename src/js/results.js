@@ -231,7 +231,7 @@ function renderData() {
     // Build element for map
     buildMapElement();
     // Get coordinates and build map
-    getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
+    //getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
   }
 
   //** Plant and Manufacturer Name
