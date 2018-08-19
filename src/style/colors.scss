@@ -1,6 +1,8 @@
-$color-primary: lightblue;
+$color-primary: white;
 $color-secondary: black;
+$color-accent: #DA2422;
 $color-font-dark: black;
 $color-font-light: white;
-$color-background: white;
-$color-shadow: scale-color($color-font-dark, $lightness: 60%);
+$color-background: #2B2B2B;
+$color-gears: white;
+$color-shadow: $color-font-dark;

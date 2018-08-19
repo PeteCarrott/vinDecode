@@ -14,6 +14,7 @@ body {
 .main {
   position: relative;
   height: 100%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -31,6 +32,7 @@ body {
   margin: 0;
   font-size: 2em;
   font-weight: 400;
+  color: $color-font-light;
 }
 
 .logo__svg {
@@ -39,8 +41,9 @@ body {
   margin-top: 10px;
 }
 
-.logo__gear-inner, .logo__gear-outer {
-  color: red;
+.logo__gear-outer,
+.logo__gear-inner {
+  fill: $color-gears;
 }
 
 .logo__gear-left {
@@ -70,27 +73,28 @@ body {
 
 .form__label {
   padding-bottom: 10px;
+  color: $color-font-light;
 }
 
 .form__input-wrapper {
   display: flex;
-  border: 1px solid $color-secondary;
   height: 35px;
-  padding: 5px;
   @include main-shadow;
+  z-index: 10;
 }
 
 .form__input {
   border: none;
-  border-right: 1px solid $color-secondary;
   flex-basis: 65%;
   font-size: 1.2em;
+  color: $color-font-dark;
+  padding-left: 10px;
   letter-spacing: 2px;
   &:active {
-    outline-color: $color-primary;
+    outline-color: $color-accent;
   }
   &:focus {
-    outline-color: $color-primary;
+    outline-color: $color-accent;
   }
 }
 
@@ -99,21 +103,24 @@ body {
   border: none;
   cursor: pointer;
   font-size: 1.2em;
-  font-weight: bold;
-  margin-left: 5px;
-  color: $color-font-dark;
-  background-color: $color-background;
+  font-weight: 400;
+  color: $color-font-light;
+  background-color: $color-accent;
 }
 
 .footer {
-  margin-top: 150px;
+  position: absolute;
+  top: 90%;
+  left: 5%;
+  z-index: 10;
 }
 
 .footer__button {
-  transform: rotate(-30deg);
+  //transform: rotate(-30deg);
   cursor: pointer;
-  border: none;
+  border: .5px solid $color-accent;
+  padding: 10px 15px;
   font-size: 1em;
-  background: $color-background;
-  color: $color-font-dark;
+  background: none;
+  color: $color-font-light;
 }
