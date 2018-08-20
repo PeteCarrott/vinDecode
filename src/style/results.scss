@@ -10,6 +10,7 @@ body {
   font-weight: 300;
   color: $color-font-light;
   box-sizing: content-box;
+  @include background-tile;
 }
 
 p {

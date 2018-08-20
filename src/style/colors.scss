@@ -4,5 +4,6 @@ $color-accent: #DA2422;
 $color-font-dark: black;
 $color-font-light: white;
 $color-background: #2B2B2B;
-$color-gears: white;
-$color-shadow: $color-font-dark;
+$color-outer-gears: white;
+$color-inner-gears: lighten($color-background, 15%);
+$color-shadow: darken($color-background, 5%);
