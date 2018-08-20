@@ -2,75 +2,62 @@
 @import 'mixins';
 @import 'animations';
 @import 'sizes';
+@import 'bkgrounds';
 body {
-  box-sizing: border-box;
   margin: 0;
-  padding: 0;
   @include fonts;
-  font-size: 0.8em;
   line-height: 1.5;
+  font-weight: 300;
+  color: $color-font-light;
+  box-sizing: content-box;
 }
 
 p {
   margin: 0.5em 0;
+  font-size: .9em;
 }
 
 section {
-  margin: 0 5px;
+  width: 100%;
 }
 
 .main {
+  position: relative;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  padding: 20px 10px;
   max-width: $mainMaxWidth;
   margin: auto;
-  height: 100%;
 }
 
-.logo {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: $logoPadding;
-}
-
-.logo__title {
-  margin: 0;
-  font-size: 2em;
-  font-weight: 400;
-}
-
-.logo__svg {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-.logo__gear-left {
-  @include animateGear(turnLeft);
-}
-
-.logo__gear-right {
-  @include animateGear(turnRight);
-  position: absolute;
-  left: 36px;
-  top: -7px;
-}
-
-@include gearKeyframes;
-.form-wrapper {
-  width: 100%;
-  max-width: $inputMaxWidth;
-  display: flex;
-}
-
+@include logo;
 .vin__label {
   text-align: center;
+  letter-spacing: 2.5px;
+  font-weight: 400;
   margin: 10px 0;
+}
+
+.title {
+  // The section titles
+  color: white;
+  font-size: 1.25em;
+  font-weight: 400;
+  margin: 0;
+  padding-left: 10px;
+}
+
+.shelve {
+  height: 10px;
+  background: $color-primary;
+  @include main-shadow;
 }
 
 .content-wrapper {
   display: grid;
   grid-template-columns: 1fr;
+  padding: 15px 0;
 }
 
 .content-wrapper.vehicle-content {
@@ -106,12 +93,6 @@ section {
   grid-column: 2 / -1;
 }
 
-.banner {
-  background-color: black;
-  color: white;
-  padding: 10px 5px;
-}
-
 .hide {
   display: none;
 }
@@ -119,6 +100,6 @@ section {
 .build-content-map {
   height: 300px;
   max-width: 390px;
-  margin: 10px auto;
+  margin: 10px;
   background-color: $color-secondary;
 }

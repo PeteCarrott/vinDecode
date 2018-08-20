@@ -21,49 +21,7 @@ body {
   align-items: center;
 }
 
-.logo {
-  width: 100vw;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.logo__title {
-  margin: 0;
-  font-size: 2em;
-  font-weight: 400;
-  color: $color-font-light;
-}
-
-.logo__svg {
-  position: relative;
-  margin-left: 10px;
-  margin-top: 10px;
-}
-
-.logo__gear-outer,
-.logo__gear-inner {
-  fill: $color-gears;
-}
-
-.logo__gear-left {
-  @include animateGear(turnLeft);
-}
-
-.logo__gear-right {
-  @include animateGear(turnRight);
-  position: absolute;
-  left: 36px;
-  top: -7px;
-}
-
-@include gearKeyframes;
-.form-wrapper {
-  width: 100%;
-  max-width: $inputMaxWidth;
-  display: flex;
-}
-
+@include logo;
 .form {
   width: 100%;
   padding: 15px;
