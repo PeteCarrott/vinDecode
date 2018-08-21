@@ -61,6 +61,21 @@ section {
   @include main-shadow;
 }
 
+.main-data-class {
+  grid-column: 1 / 2;
+  padding-left: 10px;
+}
+
+.sub-data-class {
+  padding-right: 10px;
+  justify-self: end;
+  grid-column: 2 / -1;
+}
+
+.hide {
+  display: none;
+}
+
 .content-wrapper {
   padding: 15px 0;
 }
@@ -79,26 +94,37 @@ section {
   grid-column: 1 / -1;
 }
 
+.build-data-grid {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  @media only screen and (min-width: $smallScreenWidth) {
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.build-data-grid .content-wrapper {
+  @media only screen and (min-width: $smallScreenWidth) {
+    padding: 0;
+  }
+}
+
 .build-content-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-auto-flow: column;
-}
-
-.main-data-class {
-  grid-column: 1 / 2;
-  padding-left: 10px;
-}
-
-.sub-data-class {
-  padding-right: 10px;
-  justify-self: end;
-  grid-column: 2 / -1;
-}
-
-.hide {
-  display: none;
+  @media only screen and (min-width: $smallScreenWidth) {
+    grid-template-columns: 1fr;
+  }
+  .sub-data-class {
+    @media only screen and (min-width: $smallScreenWidth) {
+      grid-column: 1 / 1;
+      justify-self: start;
+      padding-left: 10px;
+    }
+  }
 }
 
 .build-content-map {
@@ -106,6 +132,15 @@ section {
   max-width: 390px;
   margin: 10px;
   background-color: $color-background;
+  @media only screen and (min-width: $smallScreenWidth) {
+    grid-column: 2 / -1;
+    grid-row: 1 / -1;
+    max-width: 100%;
+  }
+}
+
+.build-content-additional {
+  display: grid;
 }
 
 .footer {
