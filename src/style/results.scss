@@ -36,9 +36,42 @@ section {
   @media only screen and (min-width: $smallScreenWidth) {
     max-width: $maxScreenWidth;
   }
+  @media only screen and (min-width: $largeScreenWidth) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 10px;
+  }
 }
 
 @include logo;
+.logo,
+.vin,
+.footer {
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 1 / -1;
+    margin: 25px 0;
+  }
+}
+
+// For large screens
+.vehicle,
+.powertrain,
+.body,
+.safety-info,
+.additional-info {
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 1 / 2;
+  }
+}
+
+// For large screens
+.build-location {
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 2 / -1;
+    grid-row: 3 / 5;
+  }
+}
+
 .vin__label {
   text-align: center;
   letter-spacing: 2.5px;
