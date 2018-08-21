@@ -76,11 +76,5 @@ body {
 }
 
 .footer__button {
-  //transform: rotate(-30deg);
-  cursor: pointer;
-  border: .5px solid $color-accent;
-  padding: 10px 15px;
-  font-size: 1em;
-  background: none;
-  color: $color-font-light;
+  @include red-border-button;
 }

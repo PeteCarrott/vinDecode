@@ -51,7 +51,7 @@ section {
 
 .shelve {
   height: 10px;
-  background: $color-primary;
+  background: $color-accent;
   @include main-shadow;
 }
 
@@ -102,5 +102,14 @@ section {
   height: 300px;
   max-width: 390px;
   margin: 10px;
-  background-color: $color-secondary;
+  background-color: $color-background;
+}
+
+.footer {
+  display: flex;
+  justify-content: center;
+}
+
+.footer__button {
+  @include red-border-button;
 }

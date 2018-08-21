@@ -57,3 +57,13 @@
 @mixin background-gradient {
   background: radial-gradient(circle, rgba(83, 83, 83, .35) 0%, rgba(43, 43, 43, .1) 100%);
 }
+
+@mixin red-border-button {
+  //transform: rotate(-30deg);
+  cursor: pointer;
+  border: .5px solid $color-accent;
+  padding: 10px 15px;
+  font-size: 1em;
+  background: none;
+  color: $color-font-light;
+}
