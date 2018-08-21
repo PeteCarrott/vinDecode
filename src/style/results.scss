@@ -16,6 +16,9 @@ body {
 p {
   margin: 0.5em 0;
   font-size: .9em;
+  @media only screen and (min-width: $smallScreenWidth) {
+    font-size: 1em;
+  }
 }
 
 section {
@@ -28,8 +31,11 @@ section {
   height: 100%;
   width: 100%;
   padding: 20px 10px;
-  max-width: $mainMaxWidth;
+  max-width: $smallScreenWidth;
   margin: auto;
+  @media only screen and (min-width: $smallScreenWidth) {
+    max-width: $maxScreenWidth;
+  }
 }
 
 @include logo;
@@ -56,27 +62,24 @@ section {
 }
 
 .content-wrapper {
-  display: grid;
-  grid-template-columns: 1fr;
   padding: 15px 0;
 }
 
-.content-wrapper.vehicle-content {
+.vehicle-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
   grid-auto-flow: column;
 }
 
-// Just for mobile
-.content-wrapper.powertrain-content .sub-data-class {
+.powertrain-content .sub-data-class {
   padding-right: 0px;
   padding-left: 10px;
   justify-self: start;
   grid-column: 1 / -1;
 }
 
-.content-wrapper.build-content-main {
+.build-content-main {
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-template-rows: auto;
