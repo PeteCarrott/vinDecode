@@ -57,10 +57,16 @@ section {
 .vehicle,
 .powertrain,
 .body,
-.safety-info,
-.additional-info {
+.safety-info {
   @media only screen and (min-width: $largeScreenWidth) {
     grid-column: 1 / 2;
+  }
+}
+
+.additional-info {
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 2 / -1;
+    grid-row: 6 / 7;
   }
 }
 
@@ -68,7 +74,7 @@ section {
 .build-location {
   @media only screen and (min-width: $largeScreenWidth) {
     grid-column: 2 / -1;
-    grid-row: 3 / 5;
+    grid-row: 3 / 6;
   }
 }
 
@@ -79,8 +85,8 @@ section {
   margin: 10px 0;
 }
 
+// The section titles
 .title {
-  // The section titles
   color: white;
   font-size: 1.25em;
   font-weight: 400;
@@ -151,11 +157,20 @@ section {
   @media only screen and (min-width: $smallScreenWidth) {
     grid-template-columns: 1fr;
   }
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-template-columns: 1fr 1fr;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  } //*********************************************************
   .sub-data-class {
     @media only screen and (min-width: $smallScreenWidth) {
       grid-column: 1 / 1;
       justify-self: start;
       padding-left: 10px;
+    }
+    @media only screen and (min-width: $largeScreenWidth) {
+      justify-self: end;
+      grid-column: 2 / -1;
     }
   }
 }
@@ -169,6 +184,10 @@ section {
     grid-column: 2 / -1;
     grid-row: 1 / -1;
     max-width: 100%;
+  }
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 1 / -1;
+    grid-row: 2 / -1;
   }
 }
 
