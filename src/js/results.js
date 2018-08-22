@@ -1,4 +1,9 @@
-import { capitalize, determineAge, getSerialNumber, formatLocation } from './app-functions';
+import {
+  capitalize,
+  determineAge,
+  getSerialNumber,
+  formatLocation
+} from './app-functions';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import config from '../../config';
 import '../style/results.scss';
@@ -226,12 +231,17 @@ function renderData() {
 
   //** Map
 
+
+
   // Check if info for map is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
     // Build element for map
-    buildMapElement();
+    buildMapElement(true);
     // Get coordinates and build map
     //getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
+  } else {
+    // Build element and display no map data;
+    buildMapElement(false);
   }
 
   //** Plant and Manufacturer Name
@@ -264,15 +274,23 @@ function renderData() {
 
   /**
    * * buildMapElement() mounts a div at will contain the map
+   * @param {boolean} hasMapData
    * Returns void
    */
-  function buildMapElement() {
+  function buildMapElement(hasMapData) {
     const mapDiv = document.createElement('div');
     mapDiv.classList.add('content-wrapper');
     mapDiv.classList.add('build-content-map');
     const sibling = document.querySelector('.build-content-main');
     // Insert after sibling
     sibling.parentNode.insertBefore(mapDiv, sibling.nextSibling);
+    if (!hasMapData) {
+      // Add an message letting the user know theres no city, state etc...
+      const message = document.createElement('h3');
+      message.classList.add('map-message');
+      mapDiv.appendChild(message);
+      message.textContent = 'No location data available';
+    }
   }
 
   /**
@@ -305,8 +323,10 @@ function renderData() {
   function initMap(coords) {
     console.log(coords);
     const mapDiv = document.querySelector('.build-content-map');
-    loadGoogleMapsApi({ key: config.x })
-      .then(function(googleMaps) {
+    loadGoogleMapsApi({
+        key: config.x
+      })
+      .then(function (googleMaps) {
         const map = new googleMaps.Map(mapDiv, {
           center: {
             lat: coords.lat,
@@ -319,7 +339,7 @@ function renderData() {
           map: map
         });
       })
-      .catch(function(error) {
+      .catch(function (error) {
         console.error(error);
       });
   }
@@ -359,7 +379,10 @@ function renderData() {
         arr.forEach(key => {
           const value = localStorage.getItem(key);
           if (value !== null) {
-            sectionArr.push({ key, value });
+            sectionArr.push({
+              key,
+              value
+            });
           }
         });
         resolve(sectionArr);

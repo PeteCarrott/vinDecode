@@ -106,13 +106,13 @@ section {
 }
 
 .sub-data-class {
-  padding-right: 10px;
+  padding: 0 10px;
   justify-self: end;
   grid-column: 2 / -1;
 }
 
 .hide {
-  display: none;
+  //display: none;
 }
 
 .content-wrapper {
@@ -180,6 +180,9 @@ section {
   max-width: 390px;
   margin: 10px;
   background-color: $color-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   @media only screen and (min-width: $smallScreenWidth) {
     grid-column: 2 / -1;
     grid-row: 1 / -1;
@@ -193,6 +196,17 @@ section {
 
 .build-content-additional {
   display: grid;
+  @media only screen and (min-width: $smallScreenWidth) {
+    grid-column: 1 / 2;
+  }
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-column: 1 / -1;
+  }
+}
+
+.map-message {
+  opacity: .5;
+  font-weight: 400;
 }
 
 .footer {
