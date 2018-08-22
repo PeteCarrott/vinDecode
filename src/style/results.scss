@@ -177,7 +177,7 @@ section {
 
 .build-content-map {
   height: 300px;
-  max-width: 390px;
+  max-width: $smallScreenWidth;
   margin: 10px;
   background-color: $color-background;
   display: flex;

@@ -231,8 +231,6 @@ function renderData() {
 
   //** Map
 
-
-
   // Check if info for map is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
     // Build element for map
