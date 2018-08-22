@@ -19,7 +19,9 @@ exports.getData = url => {
       return res.json();
     })
     .then(myJSON => myJSON)
-    .catch(error => error);
+    .catch(() => {
+      return "Error : failed to fetch"
+    });
 };
 
 /**

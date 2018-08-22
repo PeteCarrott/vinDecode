@@ -8,6 +8,7 @@ body {
   width: 100vw;
   margin: 0;
   padding: 0;
+  position: relative;
   @include fonts;
   @include background-tile;
 }
@@ -21,6 +22,21 @@ body {
   justify-content: center;
   align-items: center;
   @include background-gradient;
+}
+
+.error-container {
+  position: absolute;
+  height: 40px;
+  width: 100%;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.error-message {
+  color: white;
+  opacity: 1;
 }
 
 @include logo;

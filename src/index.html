@@ -21,6 +21,10 @@
     </svg>
   </div>
 
+  <div class="error-container">
+    <h5 class="error-message">Error : xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</h5>
+  </div>
+
   <div class="main">
 
     <section class="logo">
@@ -44,9 +48,10 @@
 
     <section class="form-wrapper">
       <form class="form">
-        <label class="form__label" for="vin">Vin</label>
+        <label class="form__label" for="vin">Vehicle Identification Number</label>
+        <!-- Add ? for vin info link -->
         <div class="form__input-wrapper">
-          <input class="form__input " required type="text" name="vin" minlength="1" maxlength="17">
+          <input class="form__input " required type="text" name="vin" minlength="17" maxlength="17">
           <button class="form__button">Decode</button>
         </div>
       </form>

@@ -99,5 +99,10 @@ function loadResultsPage() {
  */
 function handleError(error) {
   // TODO: Inform the user.
-  alert('Error : ', error);
+  console.log("!!!! Something else went wrong : ");
+  // Select element
+  // Set message
+  // Toggle class
+  // Run timer
+  // Toggle class off after timer
 }
