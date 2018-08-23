@@ -8,23 +8,6 @@ exports.createURL = vin => {
 };
 
 /**
- * * getData() takes the url in and fetches the data, then converts to JSON.
- * @param string url
- * Returns promise
- */
-exports.getData = url => {
-  return fetch(url)
-    .then(res => {
-      if (!res.ok) throw new Error(error);
-      return res.json();
-    })
-    .then(myJSON => myJSON)
-    .catch(() => {
-      return "Error : failed to fetch"
-    });
-};
-
-/**
  * * filterData() takes the data and removes null and empty values.
  * @param array of Objects
  * Returns promise
@@ -32,7 +15,7 @@ exports.getData = url => {
 exports.filterData = data => {
   return new Promise((resolve, reject) => {
     try {
-      resolve(data.Results.filter(ele => ele.Value !== null).filter(ele => ele.Value !== ''));
+      resolve(data.data.Results.filter(ele => ele.Value !== null).filter(ele => ele.Value !== ''));
     } catch (error) {
       reject(error);
     }

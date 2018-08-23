@@ -1,4 +1,5 @@
 import app from './app-functions';
+import axios from 'axios';
 import '../style/index.scss';
 
 // Set up listener on decode button
@@ -6,13 +7,14 @@ const vinForm = document.querySelector('.form');
 const vinInput = document.querySelector('.form__input');
 const vinError = document.querySelector('.form__error');
 
-//
+// Form validation
 vinForm.addEventListener('submit', e => {
   if (vinInput.validity.tooShort) {
     vinError.textContent = "I need a vin of 17 characters between I try decoding.";
   } else if (vinInput.validity.patternMismatch) {
     vinError.textContent = "Only use letters and numbers, no spaces or special characters."
   } else {
+    // Run main function
     getAndStoreData();
   }
   e.preventDefault();
@@ -61,13 +63,28 @@ function getAndStoreData() {
   }
 
   // Use the url and start the process of gathering the data needed.
-  app
-    .getData(url)
+
+  axios.get(url)
+    .then(res => {
+      if (res.status !== 200) throw new Error(error);
+      return res;
+    })
     .then(unFilteredData => app.filterData(unFilteredData))
     .then(filterData => app.checkVin(filterData))
     .then(filteredData => storeDataLocally(filteredData, vinArr))
     .then(() => loadResultsPage())
-    .catch(error => handleError(error));
+    .catch((error) => {
+      console.log("in .catch");
+      handleError(error);
+    });
+
+  //app
+  //.getData(url)
+  // .then(unFilteredData => app.filterData(unFilteredData))
+  // .then(filterData => app.checkVin(filterData))
+  // .then(filteredData => storeDataLocally(filteredData, vinArr))
+  // .then(() => loadResultsPage())
+  // .catch(error => handleError(error));
 }
 
 /**
@@ -109,8 +126,21 @@ function loadResultsPage() {
  * Returns void
  */
 function handleError(error) {
-  // TODO: Inform the user.
-  console.log("!!!! Something else went wrong : ");
+  // Errors
+  const networkProblem = "Error: Network Error";
+  const code5 = "5 - VIN has errors in few positions.";
+  const code11 = "11 - Incorrect Model Year, decoded data may not be accurate";
+
+  if (error == networkProblem) {
+    console.log("Axios" + networkProblem);
+  } else if (error === code5) {
+    console.log("Code5", code5);
+  } else if (error === code11) {
+    console.log("Code11", code11);
+  } else {
+    console.log(error);
+  }
+
   // Select element
   // Set message
   // Toggle class
