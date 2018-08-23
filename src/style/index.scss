@@ -69,9 +69,17 @@ body {
   &:active {
     outline-color: $color-accent;
   }
-  &:focus {
-    outline-color: $color-accent;
+  &:invalid {
+    border-color: #900;
+    background-color: #FDD;
   }
+  &:focus:invalid {
+    outline: none;
+  }
+}
+
+.form__error {
+  color: $color-accent;
 }
 
 .form__button {

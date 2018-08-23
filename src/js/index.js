@@ -2,10 +2,21 @@ import app from './app-functions';
 import '../style/index.scss';
 
 // Set up listener on decode button
-document.querySelector('.form__button').addEventListener('click', e => {
-  getAndStoreData();
+const vinForm = document.querySelector('.form');
+const vinInput = document.querySelector('.form__input');
+const vinError = document.querySelector('.form__error');
+
+//
+vinForm.addEventListener('submit', e => {
+  if (vinInput.validity.tooShort) {
+    vinError.textContent = "I need a vin of 17 characters between I try decoding.";
+  } else if (vinInput.validity.patternMismatch) {
+    vinError.textContent = "Only use letters and numbers, no spaces or special characters."
+  } else {
+    getAndStoreData();
+  }
   e.preventDefault();
-});
+}, false);
 
 // Set up listener on demo button
 document.querySelector('.footer__button').addEventListener('click', getAndStoreData);
