@@ -219,5 +219,16 @@ section {
 }
 
 .footer {
-  // todo
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.svg-wrapper {
+  width: 30px;
+}
+
+.svg-social-path {
+  fill: $color-font-light;
+  opacity: .25;
 }

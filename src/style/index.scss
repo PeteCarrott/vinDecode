@@ -48,6 +48,10 @@ body {
   }
 }
 
+.form__link-span {
+  font-style: italic;
+}
+
 .form__input-wrapper {
   display: flex;
   height: 35px;
@@ -92,13 +96,28 @@ body {
   background-color: $color-accent;
 }
 
-.footer {
+.demo {
   position: absolute;
   top: 90%;
   left: 5%;
   z-index: 10;
 }
 
-.footer__button {
+.demo__button {
   @include red-border-button;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+}
+
+.svg-wrapper {
+  width: 30px;
+}
+
+.svg-social-path {
+  fill: $color-font-light;
+  opacity: .25;
 }

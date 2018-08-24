@@ -22,7 +22,7 @@ vinForm.addEventListener('submit', e => {
 }, false);
 
 // Set up listener on demo button
-document.querySelector('.footer__button').addEventListener('click', getAndStoreData);
+document.querySelector('.demo__button').addEventListener('click', getAndStoreData);
 
 /**
  * * getAndStoreData() is the starting function for the application.
