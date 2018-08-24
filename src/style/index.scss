@@ -24,21 +24,6 @@ body {
   @include background-gradient;
 }
 
-.error-container {
-  position: absolute;
-  height: 40px;
-  width: 100%;
-  background-color: red;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.error-message {
-  color: white;
-  opacity: 1;
-}
-
 @include logo;
 .form {
   width: 100%;

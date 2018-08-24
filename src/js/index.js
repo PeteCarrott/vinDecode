@@ -74,17 +74,9 @@ function getAndStoreData() {
     .then(filteredData => storeDataLocally(filteredData, vinArr))
     .then(() => loadResultsPage())
     .catch((error) => {
-      console.log("in .catch");
       handleError(error);
     });
 
-  //app
-  //.getData(url)
-  // .then(unFilteredData => app.filterData(unFilteredData))
-  // .then(filterData => app.checkVin(filterData))
-  // .then(filteredData => storeDataLocally(filteredData, vinArr))
-  // .then(() => loadResultsPage())
-  // .catch(error => handleError(error));
 }
 
 /**
@@ -128,22 +120,38 @@ function loadResultsPage() {
 function handleError(error) {
   // Errors
   const networkProblem = "Error: Network Error";
+  const code2 = "2 - VIN corrected, error in one position. ";
+  const code3 = "3 - VIN corrected, error in one position (assuming Check Digit is correct)";
+  const code4 = "4 - VIN corrected, error in one position only (indicated by ! in Suggested VIN), multiple matches found.";
   const code5 = "5 - VIN has errors in few positions.";
-  const code11 = "11 - Incorrect Model Year, decoded data may not be accurate";
+  const code7 = "7 - Manufacturer is not registered with NHTSA for sale or importation in the U.S. for use on U.S roads; Please contact the manufacturer directly for more information.";
+  const code8 = "8 - No detailed data available currently";
+  const code11 = "11- Incorrect Model Year, decoded data may not be accurate!";
 
   if (error == networkProblem) {
     console.log("Axios" + networkProblem);
-  } else if (error === code5) {
-    console.log("Code5", code5);
-  } else if (error === code11) {
-    console.log("Code11", code11);
+    vinError.textContent = "Sorry, looks like the network is down.";
+  } else if (error === code2) { // Test with "5YJSA1H12F1P71790"
+    vinError.textContent = "Found one error in your vin, double check it.";
+    console.log(code2);
+  } else if (error === code3) { // Test with "1A3CCBBC6DN695936"
+    vinError.textContent = "Found one error in your vin, double check it.";
+    console.log(code3);
+  } else if (error === code5 || error === code4) { // Test with "1A3CCBBB6DN695936" // Test with "" 
+    vinError.textContent = "Found errors in your vin, double check it.";
+    console.log(code5);
+  } else if (error === code7) { // Test with "15544454444444444"
+    vinError.textContent = "This manufacturer is not registered with NHTSA. You sure your vin is right?";
+    console.log(code7);
+  } else if (error === code8) { // Test with "1G145d644d4555444"
+    vinError.textContent = "No detailed data is currently available for this vin.";
+    console.log(code8);
+  } else if (error === code11) { // Test with "JF1GPAD60Z1803590"
+    console.log(code11);
+    vinError.textContent = "Found errors in your vin, double check it.";
   } else {
+    console.log("Other error");
+    vinError.textContent = "Found an unknown error I haven't seen, make sure your vin is correct";
     console.log(error);
   }
-
-  // Select element
-  // Set message
-  // Toggle class
-  // Run timer
-  // Toggle class off after timer
 }
