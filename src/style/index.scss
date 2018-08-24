@@ -37,6 +37,17 @@ body {
   color: $color-font-light;
 }
 
+.form__link {
+  color: $color-font-light;
+  text-decoration: none;
+  &:link {
+    text-decoration: none;
+  }
+  &:visited {
+    text-decoration: none;
+  }
+}
+
 .form__input-wrapper {
   display: flex;
   height: 35px;

@@ -44,20 +44,23 @@
 
     <section class="form-wrapper">
       <form class="form" novalidate>
-        <label class="form__label" for="vin">Vehicle Identification Number</label>
-        <!-- Add ? for vin info link -->
-        <div class="form__input-wrapper">
-          <input class="form__input" type="text" name="vin" autocomplete="off" minlength="17" maxlength="17" pattern="[A-Za-z0-9]{17}"
-            required>
-          <button class="form__button">Decode</button>
+        <label class="form__label" for="vin">
+          <a class="form__link" href="https://en.wikipedia.org/wiki/Vehicle_identification_number" target="_blank ">Vehicle Identification Number ?</a>
+        </label>
+
+
+        <div class="form__input-wrapper ">
+          <input class="form__input " type="text " name="vin " autocomplete="off " minlength="17 " maxlength="17
+          " pattern="[A-Za-z0-9]{17} " required>
+          <button class="form__button ">Decode</button>
         </div>
-        <p class="form__error"> </p>
+        <p class="form__error "> </p>
       </form>
     </section>
 
-    <footer class="footer">
-      <button class="footer__button">Click for demo</button>
-      <div class="footer__svg">
+    <footer class="footer ">
+      <button class="footer__button ">Click for demo</button>
+      <div class="footer__svg ">
         <!--TODO: Add svg -->
       </div>
     </footer>
