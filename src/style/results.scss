@@ -209,11 +209,15 @@ section {
   font-weight: 400;
 }
 
-.footer {
+.start-over {
   display: flex;
   justify-content: center;
 }
 
-.footer__button {
+.start-over-button {
   @include red-border-button;
+}
+
+.footer {
+  // todo
 }

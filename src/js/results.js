@@ -18,10 +18,23 @@ function renderData() {
   const buildContentAdditional = document.querySelector('.build-content-additional');
   const safetyContent = document.querySelector('.safety-content');
   const additionalContent = document.querySelector('.additional-content');
+  const startOverBtn = document.querySelector('.start-over-button');
 
   // Classes for elements
   const mainDataClass = 'main-data-class';
   const subDataClass = 'sub-data-class';
+
+  //***************************************************************************
+  //** Event Listeners */
+  //***************************************************************************
+
+  // This event will clear localStorage and take user back to home page.
+  startOverBtn.addEventListener('click', e => {
+    // Clear local storage
+    localStorage.clear();
+    // Load the home page
+    window.location.href = './index.html';
+  });
 
   //***************************************************************************
   //** Format Data */
