@@ -9,6 +9,7 @@ const vinError = document.querySelector('.form__error');
 
 // Form validation
 vinForm.addEventListener('submit', e => {
+
   if (vinInput.validity.tooShort) {
     vinError.textContent = "I need a vin of 17 characters between I try decoding.";
   } else if (vinInput.validity.patternMismatch) {

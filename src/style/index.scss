@@ -52,19 +52,23 @@ body {
   padding-left: 10px;
   letter-spacing: 2px;
   &:active {
-    outline-color: $color-accent;
+    outline: -webkit-focus-ring-color auto 5px;
   }
   &:invalid {
-    border-color: #900;
-    background-color: #FDD;
+    font-style: italic;
+    color: $color-accent;
   }
-  &:focus:invalid {
-    outline: none;
+  &:valid {
+    text-transform: uppercase;
+  }
+  &:focus {
+    outline: -webkit-focus-ring-color auto 5px;
   }
 }
 
 .form__error {
   color: $color-accent;
+  font-size: .8em;
 }
 
 .form__button {
