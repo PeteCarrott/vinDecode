@@ -54,11 +54,6 @@
     top: -7px;
   }
   @include gearKeyframes;
-  .form-wrapper {
-    width: 100%;
-    max-width: $inputMaxWidth;
-    display: flex;
-  }
 }
 
 @mixin background-tile {
