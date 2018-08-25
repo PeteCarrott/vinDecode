@@ -15,7 +15,7 @@ body {
 
 p {
   //margin: 0.5em 0;
-  font-size: 1em;
+  font-size: .9em;
   @media only screen and (min-width: $smallScreenWidth) {
     font-size: 1em;
   }
@@ -39,7 +39,7 @@ section {
   @media only screen and (min-width: $largeScreenWidth) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+    column-gap: 10px;
   }
 }
 
@@ -49,8 +49,13 @@ section {
 .footer {
   @media only screen and (min-width: $largeScreenWidth) {
     grid-column: 1 / -1;
-    margin: 25px 0;
+    margin: 16px 0;
   }
+}
+
+.vin {
+  opacity: 0;
+  animation: fadeIn 1s 1s forwards ease-in;
 }
 
 // For large screens
@@ -82,7 +87,7 @@ section {
   text-align: center;
   letter-spacing: 2.5px;
   font-weight: 400;
-  margin: 10px 0;
+  margin: 16px 0;
 }
 
 // The section titles
@@ -92,14 +97,19 @@ section {
   font-weight: 400;
   margin: 0;
   padding-left: 10px;
+  opacity: 0;
+  animation: fadeIn 1s 2s forwards ease-in-out;
 }
 
 .shelve {
   height: 5px;
   background: $color-accent;
   @include main-shadow;
+  opacity: 0;
+  animation: fadeIn 1s 2s forwards ease-in-out;
 }
 
+@include fadeInKeyFrames;
 .main-data-class {
   grid-column: 1 / 2;
   padding-left: 10px;
@@ -117,8 +127,11 @@ section {
 
 .content-wrapper {
   padding: 0px 0;
+  opacity: 0;
+  animation: fadeIn 1s 3s forwards ease-in;
 }
 
+@include fadeInKeyFrames;
 .vehicle-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -137,7 +150,7 @@ section {
   display: grid;
   grid-template-rows: auto auto auto;
   @media only screen and (min-width: $smallScreenWidth) {
-    padding: 8px 0;
+    padding: 0px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -212,6 +225,7 @@ section {
 .start-over {
   display: flex;
   justify-content: center;
+  grid-column: 1 / -1;
 }
 
 .start-over-button {
