@@ -249,7 +249,7 @@ function renderData() {
     // Build element for map
     buildMapElement(true);
     // Get coordinates and build map
-    //getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
+    getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
   } else {
     // Build element and display no map data;
     buildMapElement(false);
@@ -323,7 +323,7 @@ function renderData() {
         return res.json();
       })
       .then(myJSON => myJSON.results[0].geometry.location)
-      .catch(error => console.log(error)); //TODO: handle error
+      .catch(error => console.log(error));
   }
 
   /**
@@ -343,7 +343,8 @@ function renderData() {
             lat: coords.lat,
             lng: coords.lng
           },
-          zoom: 10
+          zoom: 7,
+          disableDefaultUI: true
         });
         new googleMaps.Marker({
           position: coords,
