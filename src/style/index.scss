@@ -50,7 +50,10 @@ body {
 
 .form__link-span {
   font-style: italic;
-  color: $color-accent;
+  color: $color-font-light;
+  &:hover {
+    color: $color-accent;
+  }
 }
 
 .form__input-wrapper {
@@ -65,6 +68,7 @@ body {
   flex-basis: 65%;
   font-size: 1.2em;
   color: $color-font-dark;
+  background: $color-input;
   padding-left: 10px;
   letter-spacing: 2px;
   &:active {
@@ -95,6 +99,11 @@ body {
   font-weight: 400;
   color: $color-font-light;
   background-color: $color-accent;
+  transition: font-size 0.25s, color 0.25s;
+  &:hover {
+    font-size: 1.3em;
+    color: white;
+  }
 }
 
 .demo {
@@ -118,7 +127,18 @@ body {
   width: 30px;
 }
 
+.svg-box {
+  &:hover {
+    border: 2px solid $color-font-light;
+    border-radius: 50%;
+  }
+}
+
 .svg-social-path {
   fill: $color-font-light;
   opacity: .25;
+  transition: opacity .25s;
+  &:hover {
+    opacity: 1.0;
+  }
 }

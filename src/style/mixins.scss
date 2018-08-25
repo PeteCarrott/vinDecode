@@ -52,19 +52,23 @@
 }
 
 @mixin background-tile {
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 50 50' fill='none'%3e%3ccircle cx='25.5' cy='25.5' r='7.5' fill='black' fill-opacity='.75'/%3e%3c/svg%3e");
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 50 50' fill='none'%3e%3ccircle cx='25.5' cy='25.5' r='7.5' fill='black' fill-opacity='.25'/%3e%3c/svg%3e");
 }
 
 @mixin background-gradient {
-  background: radial-gradient(circle, rgba(83, 83, 83, .35) 0%, rgba(43, 43, 43, .1) 100%);
+  background: radial-gradient(circle, rgba(83, 83, 83, .00) 0%, rgba(43, 43, 43, .00) 100%);
 }
 
 @mixin red-border-button {
-  //transform: rotate(-30deg);
   cursor: pointer;
   border: .5px solid $color-accent;
   padding: 10px 15px;
   font-size: 1em;
   background: none;
   color: $color-font-light;
+  transition: transform .25s, background-color .25s;
+  &:hover {
+    transform: translate(0, -5px);
+    background-color: $color-accent;
+  }
 }

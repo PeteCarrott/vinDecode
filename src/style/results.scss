@@ -6,16 +6,16 @@
 body {
   margin: 0;
   @include fonts;
-  line-height: 1.5;
-  font-weight: 300;
+  line-height: 1.0;
+  font-weight: 400;
   color: $color-font-light;
   box-sizing: content-box;
   @include background-tile;
 }
 
 p {
-  margin: 0.5em 0;
-  font-size: .9em;
+  //margin: 0.5em 0;
+  font-size: 1em;
   @media only screen and (min-width: $smallScreenWidth) {
     font-size: 1em;
   }
@@ -95,7 +95,7 @@ section {
 }
 
 .shelve {
-  height: 10px;
+  height: 5px;
   background: $color-accent;
   @include main-shadow;
 }
@@ -116,7 +116,7 @@ section {
 }
 
 .content-wrapper {
-  padding: 15px 0;
+  padding: 0px 0;
 }
 
 .vehicle-content {
@@ -137,7 +137,7 @@ section {
   display: grid;
   grid-template-rows: auto auto auto;
   @media only screen and (min-width: $smallScreenWidth) {
-    padding: 15px 0;
+    padding: 8px 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
   }
@@ -228,7 +228,18 @@ section {
   width: 30px;
 }
 
+.svg-box {
+  &:hover {
+    border: 2px solid $color-font-light;
+    border-radius: 50%;
+  }
+}
+
 .svg-social-path {
   fill: $color-font-light;
   opacity: .25;
+  transition: opacity .25s;
+  &:hover {
+    opacity: 1.0;
+  }
 }
