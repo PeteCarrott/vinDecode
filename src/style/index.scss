@@ -68,7 +68,6 @@ body {
 }
 
 .form__input-wrapper {
-  // display: flex;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: 35px;
@@ -79,7 +78,7 @@ body {
   border: none;
   border-radius: 0;
   grid-column: 1 / 3;
-  font-size: 1.2em;
+  font-size: 1em;
   color: $color-font-dark;
   background: $color-input;
   padding-left: 10px;
