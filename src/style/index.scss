@@ -21,16 +21,22 @@ body {
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
+  @media only screen and (min-width: $largeScreenWidth) {
+    grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
+  }
 }
 
 @include logo;
 .logo {
   grid-row: 2;
+  align-self: end;
+  margin: 0;
 }
 
 .form-wrapper {
   grid-row: 3;
   opacity: 0;
+  align-self: center;
   animation: fadeIn 1s 1s forwards ease-in;
 }
 
@@ -131,6 +137,7 @@ body {
   z-index: 10;
   opacity: 0;
   animation: fadeIn 1s 2s forwards ease-in;
+  align-self: start;
 }
 
 .demo__button {
