@@ -20,10 +20,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
-  justify-items: center; // display: flex;
-  // flex-direction: column;
-  // justify-content: center;
-  // align-items: center;
+  justify-items: center;
 }
 
 @include logo;
@@ -112,7 +109,7 @@ body {
 }
 
 .form__button {
-  grid-column: 3 / -1; // flex-basis: 35%;
+  grid-column: 3 / -1;
   border: none;
   border-radius: 0;
   cursor: pointer;
@@ -130,9 +127,7 @@ body {
 .demo {
   grid-row: 4;
   align-self: end;
-  justify-self: center; // position: absolute;
-  // top: 80%;
-  // left: 5%;
+  justify-self: center;
   z-index: 10;
   opacity: 0;
   animation: fadeIn 1s 2s forwards ease-in;
@@ -144,9 +139,6 @@ body {
 }
 
 .footer {
-  // position: fixed;
-  // bottom: 0;
-  // right: 0;
   grid-row: 5;
   justify-self: end;
   align-self: end;
