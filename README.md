@@ -6,7 +6,7 @@
 
 ## Description
 
-A web app to see detailed info about a vehicle from it vehicle id number.
+A web app to view detailed info about a vehicle from it Vehicle Identification Number (VIN).
 
 ## Built With
 
