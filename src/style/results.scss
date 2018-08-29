@@ -225,6 +225,8 @@ section {
   display: flex;
   justify-content: center;
   grid-column: 1 / -1;
+  opacity: 0;
+  animation: fadeIn 1s 5s forwards ease-in;
 }
 
 .start-over-button {
