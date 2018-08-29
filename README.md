@@ -24,6 +24,12 @@ Data comes from NHTSA
   
 <https://vpic.nhtsa.dot.gov/>
 
+## Designed with Figma
+
+See the initial design here.
+
+<https://www.figma.com/file/LEIQVXuw0ewO812nCtZSz8xE/Vin-Decoder?node-id=0%3A1>
+
 ## Author
 
 Jordan Walker
