@@ -17,14 +17,22 @@ body {
   position: relative;
   height: 100%;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+  justify-items: center; // display: flex;
+  // flex-direction: column;
+  // justify-content: center;
+  // align-items: center;
 }
 
 @include logo;
+.logo {
+  grid-row: 2;
+}
+
 .form-wrapper {
+  grid-row: 3;
   opacity: 0;
   animation: fadeIn 1s 1s forwards ease-in;
 }
@@ -120,9 +128,11 @@ body {
 }
 
 .demo {
-  position: absolute;
-  top: 80%;
-  left: 5%;
+  grid-row: 4;
+  align-self: end;
+  justify-self: center; // position: absolute;
+  // top: 80%;
+  // left: 5%;
   z-index: 10;
   opacity: 0;
   animation: fadeIn 1s 2s forwards ease-in;
@@ -130,12 +140,16 @@ body {
 
 .demo__button {
   @include red-border-button;
+  border: none;
 }
 
 .footer {
-  position: fixed;
-  bottom: 0;
-  right: 0;
+  // position: fixed;
+  // bottom: 0;
+  // right: 0;
+  grid-row: 5;
+  justify-self: end;
+  align-self: end;
 }
 
 .svg-wrapper {
