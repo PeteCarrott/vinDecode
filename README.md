@@ -6,7 +6,7 @@
 
 ## Description
 
-A web app to view detailed info about a vehicle from it Vehicle Identification Number (VIN).
+A web app to view detailed info about a vehicle from it's Vehicle Identification Number (VIN).
 
 ## Built With
 
@@ -17,8 +17,6 @@ A web app to view detailed info about a vehicle from it Vehicle Identification N
 * Google Maps JavaScript API
 * NHTSA API
 * Netlify
-
-<hr>
 
 Data comes from NHTSA
   
