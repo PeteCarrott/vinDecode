@@ -11,7 +11,9 @@ A web app to view detailed info about a vehicle from it's Vehicle Identification
 ## Built With
 
 * HTML & CSS
+* Sass
 * JavaScript
+* Jest
 * Webpack
 * Babel
 * Google Maps JavaScript API
