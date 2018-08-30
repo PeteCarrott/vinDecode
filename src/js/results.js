@@ -6,6 +6,7 @@ import {
 } from './app-functions';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import config from '../../config';
+import axios from 'axios';
 import '../style/results.scss';
 
 function renderData() {
@@ -249,7 +250,7 @@ function renderData() {
     // Build element for map
     buildMapElement(true);
     // Get coordinates and build map
-    getCoords(buildCity, buildState, buildCountry).then(coords => initMap(coords));
+    getCoords(buildCity, buildState); // initMap() is called within
   } else {
     // Build element and display no map data;
     buildMapElement(false);
@@ -317,13 +318,15 @@ function renderData() {
     // Build url
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${c},+${s}&key=${config.x}`;
     // Fetch using the google maps geocoding api
-    return fetch(url)
+    axios.get(url)
       .then(res => {
-        if (!res.ok) throw new Error(error);
-        return res.json();
+        if (res.status !== 200) throw new Error(error);
+        // Now that we have the coordinates build the map.
+        initMap(res.data.results[0].geometry.location);
       })
-      .then(myJSON => myJSON.results[0].geometry.location)
-      .catch(error => console.log(error));
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   /**
@@ -332,7 +335,6 @@ function renderData() {
    * @param {object} coords an object containing the lat and lng.
    */
   function initMap(coords) {
-    console.log(coords);
     const mapDiv = document.querySelector('.build-content-map');
     loadGoogleMapsApi({
         key: config.x
