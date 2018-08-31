@@ -344,6 +344,8 @@ function renderData() {
             coordsPromise
               .then((coords) => initMap(coords)) // Build map
               .catch(error => console.log(error)); // Handle error
+          } else {
+            console.log(status);
           }
         }); // End of geocode
       }); // End of .then
