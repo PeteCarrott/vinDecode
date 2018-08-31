@@ -306,28 +306,48 @@ function renderData() {
   }
 
   /**
-   * * getCoords() returns the lat and lng of the city, state.
+   * * getCoords() gets the lat and lng of the city, state.
    * @param {string} city
    * @param {string} state
-   * Returns a promise
+   * Returns void
    */
   function getCoords(city, state) {
-    //Format the locations
-    const c = formatLocation(city);
-    const s = formatLocation(state);
-    // Build url
-    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${c},+${s}&key=${config.x}`;
-    // Fetch using the google maps geocoding api
-    axios.get(url)
-      .then(res => {
-        if (res.status !== 200) throw new Error(error);
-        // Now that we have the coordinates build the map.
-        initMap(res.data.results[0].geometry.location);
+    // Use the google maps geocoding api
+    loadGoogleMapsApi({
+        key: config.x
       })
-      .catch((error) => {
-        console.log(error);
-      });
-  }
+      .then(function (googleMaps) {
+        // Get geocoder ready
+        const geocoder = new googleMaps.Geocoder();
+        // Start geocoding
+        geocoder.geocode({
+          'address': `${city},${state}`
+        }, function (results, status) {
+          if (status == 'OK') {
+            // First get the coordinates
+            let coordsPromise = new Promise((resolve, reject) => {
+              let lat = results[0].geometry.location.lat();
+              let lng = results[0].geometry.location.lng();
+              // Make sure the results are not undefined
+              if (lat !== undefined && lng !== undefined) {
+                // Resolve with an object
+                resolve({
+                  lat: lat,
+                  lng: lng
+                });
+                // Or throw this error
+              } else {
+                reject("Lat and/or Lng was undefined");
+              }
+            });
+            // Next step
+            coordsPromise
+              .then((coords) => initMap(coords)) // Build map
+              .catch(error => console.log(error)); // Handle error
+          }
+        }); // End of geocode
+      }); // End of .then
+  } // End of getCoords
 
   /**
    * * initMap() takes the location coordinates and build a map.
