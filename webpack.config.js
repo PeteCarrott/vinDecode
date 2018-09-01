@@ -72,19 +72,19 @@ module.exports = (env, argv) => {
             {
               loader: "css-loader", // translates css into common js
               options: {
-                sourceMap: true
+                sourceMap: false
               }
             },
             {
               loader: "postcss-loader",
               options: {
-                sourceMap: true
+                sourceMap: false
               }
             },
             {
               loader: "sass-loader", // compiles sass to css
               options: {
-                sourceMap: true
+                sourceMap: false
               }
             }
           ]
@@ -113,7 +113,7 @@ module.exports = (env, argv) => {
         }
       ]
     },
-    devtool: 'source-map',
+    //devtool: 'source-map',
     plugins: [
       //new webpack.HotModuleReplacementPlugin(),
       //new webpack.NamedModulesPlugin(),
