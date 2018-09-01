@@ -7,6 +7,12 @@ const vinForm = document.querySelector('.form');
 const vinInput = document.querySelector('.form__input');
 const vinError = document.querySelector('.form__error');
 
+// Clear local storage
+window.onload = function () {
+  // Make sure local storage is clear to prevent mixed data.
+  localStorage.clear();
+}
+
 // Form validation
 vinForm.addEventListener('submit', e => {
   if (vinInput.validity.tooShort) {
@@ -63,7 +69,6 @@ function getAndStoreData() {
   }
 
   // Use the url and start the process of gathering the data needed.
-
   axios.get(url)
     .then(res => {
       if (res.status !== 200) throw new Error(error);
@@ -76,7 +81,6 @@ function getAndStoreData() {
     .catch((error) => {
       handleError(error);
     });
-
 }
 
 /**

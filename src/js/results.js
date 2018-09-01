@@ -1,12 +1,10 @@
 import {
   capitalize,
   determineAge,
-  getSerialNumber,
-  formatLocation
+  getSerialNumber
 } from './app-functions';
 import loadGoogleMapsApi from 'load-google-maps-api';
 import config from '../../config';
-import axios from 'axios';
 import '../style/results.scss';
 
 function renderData() {
@@ -244,15 +242,24 @@ function renderData() {
   }
 
   //** Map
+  console.log(buildCity, buildState, buildCountry);
 
-  // Check if info for map is available.
+  // Check if all map info is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
-    // Build element for map
+    console.log("found all map data");
     buildMapElement(true);
-    // Get coordinates and build map
-    getCoords(buildCity, buildState); // initMap() is called within
+    getCoords(buildCity, buildState, buildCountry); // initMap() is called within
+    // Check if only the country is provided
+  } else if (buildCity === null && buildState === null && buildCountry !== null) {
+    console.log("just have the country for map");
+    buildMapElement(true);
+    getCoords('', '', buildCountry); // initMap() is called within
+  } else if (buildCity !== null && buildState === null && buildCountry !== null) {
+    console.log("just have the country and city for map");
+    buildMapElement(true);
+    getCoords(buildCity, '', buildCountry); // initMap() is called within
   } else {
-    // Build element and display no map data;
+    // Build element and display no map data text;
     buildMapElement(false);
   }
 
@@ -309,9 +316,24 @@ function renderData() {
    * * getCoords() gets the lat and lng of the city, state.
    * @param {string} city
    * @param {string} state
+   * @param {string} country
    * Returns void
    */
-  function getCoords(city, state) {
+  function getCoords(city, state, country) {
+
+    let geoAddress;
+    // Check if location address is ONLY the county
+    if (city === "" && state === "") {
+      if (country !== null) {
+        geoAddress = country;
+        console.log(geoAddress);
+      }
+    } else {
+      // Else just use the city, state
+      geoAddress = `${city},${state}`;
+      console.log(geoAddress);
+    }
+
     // Use the google maps geocoding api
     loadGoogleMapsApi({
         key: config.x
@@ -321,7 +343,7 @@ function renderData() {
         const geocoder = new googleMaps.Geocoder();
         // Start geocoding
         geocoder.geocode({
-          'address': `${city},${state}`
+          'address': geoAddress
         }, function (results, status) {
           if (status == 'OK') {
             // First get the coordinates
@@ -461,5 +483,11 @@ function renderData() {
   //**********************************************************************
 }
 
-// Call the main function.
-renderData();
+// Check if the user clicked back then forwards from the results page.
+if ((localStorage.getItem('Vehicle Type')) === null || (localStorage.getItem('Vehicle Type')) === 'Null') {
+  // Prevent results page from trying to render null data.
+  window.location.href = './index.html';
+} else {
+  // Call the main function.
+  renderData();
+}
