@@ -242,20 +242,16 @@ function renderData() {
   }
 
   //** Map
-  console.log(buildCity, buildState, buildCountry);
 
   // Check if all map info is available.
   if (buildCity !== null && buildState !== null && buildCountry !== null) {
-    console.log("found all map data");
     buildMapElement(true);
     getCoords(buildCity, buildState, buildCountry); // initMap() is called within
     // Check if only the country is provided
   } else if (buildCity === null && buildState === null && buildCountry !== null) {
-    console.log("just have the country for map");
     buildMapElement(true);
     getCoords('', '', buildCountry); // initMap() is called within
   } else if (buildCity !== null && buildState === null && buildCountry !== null) {
-    console.log("just have the country and city for map");
     buildMapElement(true);
     getCoords(buildCity, '', buildCountry); // initMap() is called within
   } else {
@@ -326,12 +322,10 @@ function renderData() {
     if (city === "" && state === "") {
       if (country !== null) {
         geoAddress = country;
-        console.log(geoAddress);
       }
     } else {
       // Else just use the city, state
       geoAddress = `${city},${state}`;
-      console.log(geoAddress);
     }
 
     // Use the google maps geocoding api
@@ -367,7 +361,7 @@ function renderData() {
               .then((coords) => initMap(coords)) // Build map
               .catch(error => console.log(error)); // Handle error
           } else {
-            console.log(status);
+            console.log("Error in geocode : " + status);
           }
         }); // End of geocode
       }); // End of .then
@@ -398,7 +392,7 @@ function renderData() {
         });
       })
       .catch(function (error) {
-        console.error(error);
+        console.error("Error when building map : " + error);
       });
   }
 
