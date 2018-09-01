@@ -3,6 +3,7 @@
 @import 'animations';
 @import 'sizes';
 @import 'bkgrounds';
+
 body {
   height: 100vh;
   width: 100vw;
@@ -15,18 +16,21 @@ body {
 
 .main {
   position: relative;
+  overflow: hidden;
   height: 100%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
   justify-items: center;
+
   @media only screen and (min-width: $largeScreenWidth) {
     grid-template-rows: 1fr 2fr 1fr 2fr 1fr;
   }
 }
 
 @include logo;
+
 .logo {
   grid-row: 2;
   align-self: end;
@@ -41,6 +45,7 @@ body {
 }
 
 @include fadeInKeyFrames;
+
 .form {
   width: 100%;
   padding: 15px;
@@ -62,9 +67,11 @@ body {
 .form__link {
   color: $color-font-light;
   text-decoration: none;
+
   &:link {
     text-decoration: none;
   }
+
   &:visited {
     text-decoration: none;
   }
@@ -73,6 +80,7 @@ body {
 .form__link-span {
   font-style: italic;
   color: $color-font-light;
+
   &:hover {
     color: $color-accent;
   }
@@ -94,16 +102,20 @@ body {
   background: $color-input;
   padding-left: 10px;
   letter-spacing: 2px;
+
   &:active {
     outline: -webkit-focus-ring-color auto 5px;
   }
+
   &:invalid {
     font-style: italic;
     color: $color-accent;
   }
+
   &:valid {
     text-transform: uppercase;
   }
+
   &:focus {
     outline: -webkit-focus-ring-color auto 5px;
   }
@@ -124,6 +136,7 @@ body {
   color: $color-font-light;
   background-color: $color-accent;
   transition: font-size 0.25s, color 0.25s;
+
   &:hover {
     font-size: 1.3em;
     color: white;
@@ -166,6 +179,7 @@ body {
   fill: $color-font-light;
   opacity: .25;
   transition: opacity .25s;
+
   &:hover {
     opacity: 1.0;
   }
